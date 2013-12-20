@@ -104,7 +104,7 @@ eecQaPlugin.init = function(params) {
     }
   };
 
-  var build = function(callback) {
+  var build = function() {
 
     for (var test in eecQaPlugin.tests) {
       if (eecQaPlugin.tests.hasOwnProperty(test)) {
@@ -121,8 +121,7 @@ eecQaPlugin.init = function(params) {
       }
     }
 
-    if (typeof callback === 'function') { callback(); }
-
+    eecQaPlugin.update('tasks'); //TODO: Update all
   };
 
   eecQaPlugin.application = params['application'];
@@ -130,10 +129,6 @@ eecQaPlugin.init = function(params) {
   eecQaPlugin.selector = params['selector'];
   eecQaPlugin.workOrderId = eecQaPlugin.getControlValue('cboWorkOrderId');
 
-  authenticate(
-    build(
-      eecQaPlugin.update('tasks')
-    )
-  );
+  authenticate(build);
 
 };
