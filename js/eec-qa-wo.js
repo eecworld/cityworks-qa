@@ -5,7 +5,7 @@ eecQaPlugin.getControlValue = function(controlId) {
 };
 
 eecQaPlugin.callApi = function(service, method, params, callback) {
-  var url = eecQaPlugin.application + '/services/' + service + '/' + method;
+  var url = eecQaPlugin.application + '/services/AMS/' + service + '/' + method;
   var data = { data: JSON.stringify(params) };
   if (!(service == 'Authentication' && method == 'Authenticate')) {
     data.token = eecQaPlugin.token['Token'];
