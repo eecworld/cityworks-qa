@@ -544,10 +544,9 @@
         <text>Quality Assurance</text>
       </panelTitle>
       <row>
-        <label id="eec-qa-scripts" type="plain">
+        <label id="eec-qa-styles" type="plain">
           <text><![CDATA[
             <link rel="stylesheet" type="text/css" href="/sacdou-cityworks-qa-plugin/css/eec-qa-plugin.css" />
-            <script src="/sacdou-cityworks-qa-plugin/js/eec-qa-wo.js"></script>
           ]]></text>
         </label>
       </row>
@@ -555,6 +554,13 @@
         <label id="eec-qa-content" type="plain">
           <text><![CDATA[
             <div id="eec-qa-tests"></div>
+          ]]></text>
+        </label>
+      </row>
+      <row>
+        <label id="eec-qa-scripts" type="plain">
+          <text><![CDATA[
+            <script src="/sacdou-cityworks-qa-plugin/js/eec-qa-wo.js"></script>
           ]]></text>
         </label>
       </row>
