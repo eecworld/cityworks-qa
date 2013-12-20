@@ -27,17 +27,19 @@ var buildQaPlugin = function() {
     }
   };
 
-  for (var i=0; i<qaTests.length; i++) {
-    $('#eec-qa-tests')
-      .append($('<div class="row" />')
-        .append($('<label class="field label" />')
-          .text(qaTests[i].complete + '/' + qaTests[i].total)
+  for (var test in qaTests) {
+    if (qaTests.hasOwnProperty(test)) {
+      $('#eec-qa-tests')
+        .append($('<div class="row" />')
+          .append($('<label class="field label" />')
+            .text(qaTests[test].complete + '/' + qaTests[test].total)
+          )
+          .append($('<div class="field" />')
+            .text(qaTests[test].description)
+          )
         )
-/*        .append($('<div class="field" />')
-          .text($(qaTests[i]).description)
-        )*/
-      )
-    ;
+      ;
+    }
   }
 
 };
