@@ -539,22 +539,22 @@
     -->
       
 
-    <panel id="eec-qa-plugin" moveBefore="Map" width="482px">
+    <panel id="eec-qa-plugin" moveBefore="Map" width="482px" cssClass="eec-qa-plugin">
       <panelTitle>
         <text>Quality Assurance</text>
       </panelTitle>
       <row>
         <label id="eec-qa-content" type="plain">
           <text><![CDATA[
-            <link rel="stylesheet" type="text/css" href="/sacdou-cityworks-qa-plugin/eec-qa-plugin.css" />
-            <script src="/sacdou-cityworks-qa-plugin/eec-qa-wo.js"></script>
+            <link rel="stylesheet" type="text/css" href="/sacdou-cityworks-qa-plugin/css/eec-qa-plugin.css" />
+            <script src="/sacdou-cityworks-qa-plugin/js/eec-qa-wo.js"></script>
             <script>
               alert('testing local');
             </script>
-            Here's some text!  Did this make it?
           ]]></text>
         </label>
       </row>
+      <row
     </panel>
 
   </layout>
