@@ -12,7 +12,7 @@ eecQaPlugin.callApi = function(service, method, params, callback) {
   }
   $.post(url, data, function(response) {
     if (response['Status'] == 0) {
-      if (typeof callback === 'function') { callback(data); }
+      if (typeof callback === 'function') { callback(response); }
     } else if (response['Status'] == 1) {
       alert('Error calling Cityworks API.  ' + response['Message']);
       if (typeof callback === 'function') { callback(); }
@@ -86,7 +86,7 @@ eecQaPlugin.init = function(params) {
 
     var authWithServer = function(callback) {
       eecQaPlugin.callApi('Authentication', 'Authenticate', eecQaPlugin['credentials'], function(data) {
-        eecQaPlugin.token = JSON.parse(data)['Value'];
+        eecQaPlugin.token = data['Value'];
         localStorage.setItem('eec-qa-token', eecQaPlugin.token);
         if (typeof callback === 'function') { callback(); }
       });
