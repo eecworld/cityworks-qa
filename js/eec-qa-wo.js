@@ -10,8 +10,7 @@ eecQaPlugin.callApi = function(service, method, params, callback) {
   if (!(service == 'Authentication' && method == 'Authenticate')) {
     data.token = eecQaPlugin.token['Token'];
   }
-  $.post(url, data, function(data) {
-    var response = JSON.parse(data);
+  $.post(url, data, function(response) {
     if (response['Status'] == 0) {
       if (typeof callback === 'function') { callback(data); }
     } else if (response['Status'] == 1) {
