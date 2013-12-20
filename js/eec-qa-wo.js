@@ -1,17 +1,19 @@
-/**
- * Created by steve on 12/20/13.
- */
+function buildQaPlugin() {
 
-var qaTests = [
-  'tasks',
-  'inspections',
-  'customFields',
-  'requiredFields',
-  'labor',
-  'equipment',
-  'materials'
-];
+  var qaTests = [
+    'tasks',
+    'inspections',
+    'customFields',
+    'requiredFields',
+    'labor',
+    'equipment',
+    'materials'
+  ];
 
-for (var i=0; i<qaTests.length; i++) {
-  $('#eec-qa-tests').append(qaTests[i]);
+  for (var i=0; i<qaTests.length; i++) {
+    $('#eec-qa-tests').append(qaTests[i]);
+  }
+
 }
+
+$(buildQaPlugin());
