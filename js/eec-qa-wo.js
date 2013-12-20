@@ -1,4 +1,4 @@
-function buildQaPlugin() {
+buildQaPlugin = function() {
 
   var qaTests = [
     'tasks',
