@@ -38,14 +38,26 @@ eecQaPlugin.getStatusLabel = function(test) {
 
 eecQaPlugin.tests = {
   tasks: {
-    status: 'fail',
-    complete: 2,
-    total: 4,
+    status: '',
+    complete: 0,
+    total: 0,
     description: 'Tasks Complete',
     update: function() {
+      //TODO: Is this going to run async?
       eecQaPlugin.callApi('Tasks', 'ByWorkOrder', {WorkOrderIds: [eecQaPlugin.workOrderId]}, function(data) {
         console.log(data); //TODO: Remove
-
+        this.status = '';
+        this.complete = 0;
+        this.total = data.length;
+        for (var i= 0; i<this.total; i++) {
+          var task = data[i];
+          if (task.Status == 'COMPLETE') { this.complete++; }
+        }
+        if (this.complete == this.total) {
+          this.status = 'pass'
+        } else {
+          this.status = 'fail'
+        }
       });
     }
   },
