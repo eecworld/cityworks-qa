@@ -16,4 +16,4 @@ function buildQaPlugin() {
 
 }
 
-$(document).ready(buildQaPlugin());
+$(window).load(buildQaPlugin());
