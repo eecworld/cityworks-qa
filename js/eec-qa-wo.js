@@ -87,12 +87,12 @@ eecQaPlugin.init = function(params) {
     var authWithServer = function(callback) {
       eecQaPlugin.callApi('Authentication', 'Authenticate', eecQaPlugin['credentials'], function(data) {
         eecQaPlugin.token = data['Value'];
-        localStorage.setItem('eec-qa-token', eecQaPlugin.token);
+        localStorage.setItem('eec-qa-token', JSON.stringify(eecQaPlugin.token));
         if (typeof callback === 'function') { callback(); }
       });
     };
 
-    var token = localStorage.getItem('eec-qa-token');  //TODO: Check token with Authentication/Validate service
+    var token = JSON.parse(localStorage.getItem('eec-qa-token'));  //TODO: Check token with Authentication/Validate service
     if (token == null) {
       authWithServer(callback);
     } else if (token['Expires'] < new Date()) {  //TODO: Timezone check
