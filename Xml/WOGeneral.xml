@@ -1,0 +1,562 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<webLayout xmlns="http://www.azteca.com/cityworks/layout/webLayout">
+  <controls>
+    <!-- SHOW SOME UNIVERSAL CUSTOM FIELDS
+    <control id="Text1" visible="true"></control>
+    <control id="Text2" visible="true"></control>
+    <control id="Text7" required="true" visible="true"></control>
+    <control id="Date1" visible="true"></control>
+    <control id="Date2" visible="true"></control>
+    <control id="Num1" visible="true"></control>
+    -->
+    
+    <!-- HIDE UNUSED FIELDS
+    <control id="cboRequestedBy" visible="false" />
+    <control id="cboSupervisor" visible="false" />
+    <control id="calProjStartDate" visible="false" />
+    <control id="calProjFinishDate" visible="false" />
+    <control id="txtSubmitToOpenBy" visible="false" />
+    <control id="txtDateSubmitToOpen" visible="false" />
+    <control id="txtWOClosedBy" visible="false" />
+    <control id="txtDateWOClosed" visible="false" />
+    <button id="btnShowPredefinedComments" visible="false" />
+    <control id="cboResolution" visible="false" />
+    -->
+    
+    <!-- MAKE A FIELD REQUIRED
+    <control id="txtNewComments" required="true" />
+    -->
+    
+    <!-- OVERRIDE THE DEFAULT REQUIRED FIELDS
+    <control id="calActualFinishDate" required="false" />
+    -->
+  </controls>
+  <layout>
+    <!-- RENAME SOME LABELS AND COLOR OTHERS
+    <label id="label_Text1" foreColor="green" style="font-weight:bold;">
+      <text>Diode Casting:</text>
+    </label>
+    <label id="label_Text2" foreColor="blue" style="font-weight:bold;">
+      <text>Nullation Cycle:</text>
+    </label>
+    <label id="label_Text7">
+      <text>Lithium Noxide:</text>
+    </label>
+    <label id="label_Date1" foreColor="#fff" backColor="#484848">
+      <text>Saturation Date:</text>
+    </label>
+    <label id="label_Date2" style="color:black; font-weight:bold; text-shadow:1px 1px 2px red; background: -webkit-linear-gradient(top, white 0%, blue 100%);">
+      <text>Procurement:</text>
+    </label>
+    <label id="label_Num1">
+      <text>Distillinization:</text>
+    </label>
+    -->
+
+    <!-- MOVE THE UNIVERSAL CUSTOM FIELDS AFTER THE GENERAL PANEL
+    <panel id="UniversalCustomFieldsPanel" moveAfter="General"></panel>
+    -->
+    
+    <!-- REMOVE THE WORK CYCLE AND RELATED WORK ACTIVITIES PANELS
+    <panel id="WorkActivities" visible="false" />
+    <panel id="WOCycle" visible="false" />
+    -->
+    
+    <!-- CREATE A NEW PANEL FOR THE COMMENTS
+    <panel id="Comments" moveAfter="General" width="482px">
+      <panelTitle>
+        <text>Comments</text>
+      </panelTitle>
+      <row>
+        <label id="label_txtNewComments">
+          <text>Add Comments:</text>
+          <linkedControls>
+            <control id="txtNewComments"/>
+          </linkedControls>
+        </label>
+        <controlContainer>
+          <linkedControls>
+            <control id="txtNewComments"/>
+          </linkedControls>
+        </controlContainer>
+        <space>
+          <linkedControls>
+            <control id="btnShowPredefinedComments"/>
+          </linkedControls>
+        </space>
+        <controlContainer>
+          <linkedControls>
+            <control id="btnShowPredefinedComments"/>
+          </linkedControls>
+        </controlContainer>
+      </row>
+      <row>
+        <label id="label_txtOldComments">
+          <text>Existing Comments:</text>
+          <linkedControls>
+            <control id="txtOldComments"/>
+          </linkedControls>
+        </label>
+        <controlContainer>
+          <linkedControls>
+            <control id="txtOldComments"/>
+          </linkedControls>
+        </controlContainer>
+      </row>
+      <row>
+        <label id="label_txtInstructions">
+          <text>Instructions:</text>
+          <linkedControls>
+            <control id="txtInstructions"/>
+          </linkedControls>
+        </label>
+        <controlContainer>
+          <linkedControls>
+            <control id="txtInstructions"/>
+          </linkedControls>
+        </controlContainer>
+      </row>
+    </panel>
+    -->
+    
+    <!-- ADD CUSTOM CSS STYLING TO THE PAGE
+    <panel id="CustomStyles" moveBefore="General" type="plain">
+      <row type="plain">
+        <label id="StyleHolder" type="plain">
+          <text><![CDATA[
+            <link rel="stylesheet" type="text/css" href="../Custom/custom-styles.css" />
+          ]]></text>
+        </label>
+      </row>
+    </panel>
+    -->
+
+    <!-- MOVE THE DETAILS, LOCATION, AND ASSETS PANELS INTO TABS
+    <tabset id="AdvancedTabs" width="485" moveBefore="AttachmentsPanel">
+      <tab id="DetailsTab">
+        <tabTitle>
+          <text>Details</text>
+        </tabTitle>
+        <row>
+          <label id="label_cboProjectName">
+            <text>Project:</text>
+            <linkedControls>
+              <control id="cboProjectName"/>
+            </linkedControls>
+          </label>
+          <controlContainer>
+            <linkedControls>
+              <control id="cboProjectName"/>
+            </linkedControls>
+          </controlContainer>
+          <label id="label_txtAcctNum">
+            <text>Account:</text>
+            <linkedControls>
+              <control id="txtAcctNum"/>
+            </linkedControls>
+          </label>
+          <controlContainer>
+            <linkedControls>
+              <control id="txtAcctNum"/>
+            </linkedControls>
+          </controlContainer>
+        </row>
+        <row>
+          <controlContainer style="width:99%;">
+            <linkedControls>
+              <control id="ProjectNameTree" />
+            </linkedControls>
+          </controlContainer>
+        </row>
+        <row>
+          <label id="label_cboPrimaryContract">
+            <text>Contract: </text>
+            <linkedControls>
+              <control id="cboPrimaryContract"/>
+            </linkedControls>
+          </label>
+          <controlContainer>
+            <linkedControls>
+              <control id="cboPrimaryContract"/>
+            </linkedControls>
+          </controlContainer>
+          <label id="label_cboContractorName">
+            <text>Contractor: </text>
+            <linkedControls>
+              <control id="cboContractorName"/>
+            </linkedControls>
+          </label>
+          <controlContainer>
+            <linkedControls>
+              <control id="cboContractorName"/>
+            </linkedControls>
+          </controlContainer>
+        </row>
+        <row>
+            <label id="label_chkLegalBillage">
+                <text>Legal Billable:</text>
+                <linkedControls>
+                  <control id="chkLegalBillable"/>
+                </linkedControls>
+            </label>
+          <controlContainer type="short">
+            <linkedControls>
+              <control id="chkLegalBillable"/>
+            </linkedControls>
+          </controlContainer>
+            <label id="label_chkContrBillable" type="long">
+                <text>Contractor Billable:</text>
+                <linkedControls>
+                  <control id="chkContrBillable"/>
+                </linkedControls>
+            </label>
+          <controlContainer>
+            <linkedControls>
+              <control id="chkContrBillable"/>
+            </linkedControls>
+          </controlContainer>
+        </row>
+        <row>
+            <label id="label_chkUpdateMap">
+                <text>Update Map:</text>
+                <linkedControls>
+                  <control id="chkUpdateMap"/>
+                </linkedControls>
+            </label>
+          <controlContainer type="short">
+            <linkedControls>
+              <control id="chkUpdateMap"/>
+            </linkedControls>
+          </controlContainer>
+            <label id="label_chkCancel" type="long">
+                <text>Cancel Work Order:</text>
+                <linkedControls>
+                  <control id="chkCancel"/>
+                </linkedControls>
+            </label>
+          <controlContainer>
+            <linkedControls>
+              <control id="chkCancel"/>
+            </linkedControls>
+          </controlContainer>
+        </row>
+        <row>
+          <label id="label_txtCancelledBy">
+            <text>Cancelled By:</text>
+            <linkedControls>
+              <control id="txtCancelledBy"/>
+            </linkedControls>
+          </label>
+          <controlContainer>
+            <linkedControls>
+              <control id="txtCancelledBy"/>
+            </linkedControls>
+          </controlContainer>
+          <label id="label_txtDateCancelled">
+            <text>Date:</text>
+            <linkedControls>
+              <control id="txtDateCancelled"/>
+            </linkedControls>
+          </label>
+          <controlContainer>
+            <linkedControls>
+              <control id="txtDateCancelled"/>
+            </linkedControls>
+          </controlContainer>
+        </row>
+        <row>
+          <label id="label_txtCancelReason">
+            <text>Cancel Reason:</text>
+            <linkedControls>
+              <control id="txtCancelReason"/>
+            </linkedControls>
+          </label>
+          <controlContainer type="long">
+            <linkedControls>
+              <control id="txtCancelReason"/>
+            </linkedControls>
+          </controlContainer>
+        </row>
+        <row>
+          <label id="label_txtUnitsAccomplished">
+            <text>Units Accomp.:</text>
+            <linkedControls>
+              <control id="txtUnitsAccomplished"/>
+            </linkedControls>
+          </label>
+          <controlContainer>
+            <linkedControls>
+              <control id="txtUnitsAccomplished"/>
+            </linkedControls>
+          </controlContainer>
+          <label id="label_cboUnitsAccompDesc">
+            <text>Description:</text>
+            <linkedControls>
+              <control id="cboUnitsAccompDesc"/>
+            </linkedControls>
+          </label>
+          <controlContainer>
+            <linkedControls>
+              <control id="cboUnitsAccompDesc"/>
+            </linkedControls>
+          </controlContainer>
+          <label id="label_txtUnitsAccompDesc">
+            <text>Description:</text>
+            <linkedControls>
+              <control id="txtUnitsAccompDesc"/>
+            </linkedControls>
+          </label>
+          <controlContainer>
+            <linkedControls>
+              <control id="txtUnitsAccompDesc" />
+            </linkedControls>
+          </controlContainer>
+        </row>
+        <row>
+          <label id="label_chkUnitsAccompDescLock">
+            <text>Lock Units Desc.:</text>
+            <linkedControls>
+              <control id="chkUnitsAccompDescLock"/>
+            </linkedControls>
+          </label>
+          <controlContainer type="short">
+            <linkedControls>
+              <control id="chkUnitsAccompDescLock"/>
+            </linkedControls>
+          </controlContainer>
+        </row>
+        <row>
+          <label id="label_lblWOLaborCost">
+            <text>Labor Cost:</text>
+            <linkedControls>
+              <control id="lblWOLaborCost"/>
+            </linkedControls>
+          </label>
+          <controlContainer>
+            <linkedControls>
+              <control id="lblWOLaborCost"/>
+            </linkedControls>
+          </controlContainer>
+          <label id="label_lblWOMatCost">
+            <text>Material Cost:</text>
+            <linkedControls>
+              <control id="lblWOMatCost"/>
+            </linkedControls>
+          </label>
+          <controlContainer>
+            <linkedControls>
+              <control id="lblWOMatCost"/>
+            </linkedControls>
+          </controlContainer>
+        </row>
+        <row>
+          <label id="label_lblWOEquipCost">
+            <text>Equipment Cost:</text>
+            <linkedControls>
+              <control id="lblWOEquipCost"/>
+            </linkedControls>
+          </label>
+          <controlContainer>
+            <linkedControls>
+              <control id="lblWOEquipCost"/>
+            </linkedControls>
+          </controlContainer>
+          <label id="label_lblWOPermitCost">
+            <text>Permit Cost:</text>
+            <linkedControls>
+              <control id="lblWOPermitCost"/>
+            </linkedControls>
+          </label>
+          <controlContainer>
+            <linkedControls>
+              <control id="lblWOPermitCost"/>
+            </linkedControls>
+          </controlContainer>
+        </row>
+        <row>
+          <label id="label_lblWOCost">
+            <text>Total WO Cost:</text>
+            <linkedControls>
+              <control id="lblWOCost"/>
+            </linkedControls>
+          </label>
+          <controlContainer>
+            <linkedControls>
+              <control id="lblWOCost"/>
+            </linkedControls>
+          </controlContainer>
+        </row>
+      </tab>
+      <tab id="LocationTab">
+        <tabTitle>
+          <text>Location Information</text>
+        </tabTitle>
+        <row>
+          <label id="label_txtWOAddress">
+            <text>WO Address:</text>
+            <linkedControls>
+              <control id="txtWOAddress"/>
+            </linkedControls>
+          </label>
+          <controlContainer>
+            <linkedControls>
+              <control id="txtWOAddress"/>
+            </linkedControls>
+          </controlContainer>
+        </row>
+        <row>
+          <label id="label_txtLocation">
+            <text>Location Details:</text>
+            <linkedControls>
+              <control id="txtLocation"/>
+            </linkedControls>
+          </label>
+          <controlContainer>
+            <linkedControls>
+              <control id="txtLocation"/>
+            </linkedControls>
+          </controlContainer>
+        </row>
+        <row>
+          <label id="label_cboShop">
+            <text>Shop:</text>
+            <linkedControls>
+              <control id="cboShop"/>
+            </linkedControls>
+          </label>
+          <controlContainer>
+            <linkedControls>
+              <control id="cboShop"/>
+            </linkedControls>
+          </controlContainer>
+          <label id="label_txtMapPage">
+            <text>Map Page:</text>
+            <linkedControls>
+              <control id="txtMapPage"/>
+            </linkedControls>
+          </label>
+          <controlContainer>
+            <linkedControls>
+              <control id="txtMapPage"/>
+            </linkedControls>
+          </controlContainer>
+        </row>
+        <row>
+          <label id="label_txtTileNo">
+            <text>Tile Number:</text>
+            <linkedControls>
+              <control id="txtTileNo"/>
+            </linkedControls>
+          </label>
+          <controlContainer>
+            <linkedControls>
+              <control id="txtTileNo"/>
+            </linkedControls>
+          </controlContainer>
+          <label id="label_cboDistrict">
+            <text>District:</text>
+            <linkedControls>
+              <control id="cboDistrict"/>
+            </linkedControls>
+          </label>
+          <controlContainer>
+            <linkedControls>
+              <control id="cboDistrict"/>
+            </linkedControls>
+          </controlContainer>
+        </row>
+        <row>
+          <label id="label_txtWOXCoordinate">
+            <text>X Location:</text>
+            <linkedControls>
+              <control id="txtWOXCoordinate"/>
+            </linkedControls>
+          </label>
+          <controlContainer>
+            <linkedControls>
+              <control id="txtWOXCoordinate"/>
+            </linkedControls>
+          </controlContainer>
+          <label id="label_txtWOYCoordinate">
+            <text>Y Location:</text>
+            <linkedControls>
+              <control id="txtWOYCoordinate"/>
+            </linkedControls>
+          </label>
+          <controlContainer>
+            <linkedControls>
+              <control id="txtWOYCoordinate"/>
+            </linkedControls>
+          </controlContainer>
+        </row>
+      </tab>
+      <tab id="AssetsTab">
+        <tabTitle>
+          <text>Assets</text>
+        </tabTitle>
+        <row>
+          <controlContainer cssClass="noSpace" width="100%">
+            <linkedControls>
+              <control id="grdWoEntity"/>
+            </linkedControls>
+          </controlContainer>
+        </row>
+        <row>
+          <controlContainer>
+            <linkedControls>
+              <control id="plcLegend"/>
+            </linkedControls>
+          </controlContainer>
+        </row>
+        <row>
+          <controlContainer style="white-space:nowrap;" cssClass="field buttonField">
+            <linkedControls>
+              <control id="btnHighlight"/>
+              <control id="btnEditAssets"/>
+              <control id="btnAddAsset"/>
+              <control id="btnGetFromMap"/>
+              <control id="btnRemoveAssets"/>
+              <control id="btnListEntityHistory"/>
+              <control id="btnCreateInsp"/>
+              <control id="btnAssetCosts"/>
+            </linkedControls>
+          </controlContainer>
+        </row>
+      </tab>
+    </tabset>
+    -->
+
+    <!-- ADD CUSTOM LOGIC TO THE PAGE
+    <panel id="CustomCode" moveAfter="UniversalCustomFieldsPanel" type="plain">
+      <row type="plain">
+        <label id="CustomCodeHolder" type="plain">
+          <text><![CDATA[
+            <script src="../Custom/custom-code.js"></script>
+          ]]></text>
+        </label>
+      </row>
+    </panel>
+    -->
+      
+
+    <panel id="eec-qa-plugin" moveBefore="Map" width="482px">
+      <panelTitle>
+        <text>Quality Assurance</text>
+      </panelTitle>
+      <row>
+        <label id="eec-qa-content" type="plain">
+          <text><![CDATA[
+            <link rel="stylesheet" type="text/css" href="/sacdou-cityworks-qa-plugin/eec-qa-plugin.css" />
+            <script src="/sacdou-cityworks-qa-plugin/eec-qa-wo.js"></script>
+            <script>
+              alert('testing local');
+            </script>
+          ]]></text>
+        </label>
+      </row>
+    </panel>
+
+  </layout>
+  <messages>
+  </messages>
+</webLayout>
