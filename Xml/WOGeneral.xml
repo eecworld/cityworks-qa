@@ -551,6 +551,7 @@
             <script>
               alert('testing local');
             </script>
+            Here's some text!  Did this make it?
           ]]></text>
         </label>
       </row>
