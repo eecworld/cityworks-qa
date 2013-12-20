@@ -37,9 +37,10 @@ eecQaPlugin.getStatusLabel = function(test) {
 };
 
 eecQaPlugin.updateTestView = function(testName) {
+  var test = eecQaPlugin.tests[testName];
   var statusView = $(eecQaPlugin.selector + ' #eec-qa-test-' + testName + ' label.eec-qa-status');
-  statusView.text(eecQaPlugin.getStatusLabel(testName));
-  if (eecQaPlugin.tests[testName].status == 'pass') {
+  statusView.text(eecQaPlugin.getStatusLabel(test));
+  if (test.status == 'pass') {
     statusView
       .addClass('eec-qa-status-pass')
       .removeClass('eec-qa-status-fail')
