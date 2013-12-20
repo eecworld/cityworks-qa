@@ -36,6 +36,13 @@ eecQaPlugin.getStatusLabel = function(test) {
   return label;
 };
 
+eecQaPlugin.updateTestView = function(testName) {
+  $(eecQaPlugin.selector + ' #eec-qa-test-' + testName + ' label.eec-qa-status')
+    .toggleClass('eec-qa-status-pass eec-qa-status-fail')
+    .text(eecQaPlugin.getStatusLabel(testName))
+  ;
+};
+
 eecQaPlugin.tests = {
   tasks: {
     status: '',
@@ -45,8 +52,7 @@ eecQaPlugin.tests = {
     update: function() {
       //TODO: Is this going to run async?
       eecQaPlugin.callApi('Tasks', 'ByWorkOrder', {WorkOrderIds: [eecQaPlugin.workOrderId]}, function(data) {
-        console.log(data); //TODO: Remove
-        debugger;
+        debugger;  //TODO: Remove
         this.status = '';
         this.complete = 0;
         this.total = data.length;
@@ -59,6 +65,7 @@ eecQaPlugin.tests = {
         } else {
           this.status = 'fail'
         }
+
       });
     }
   },
@@ -137,11 +144,11 @@ eecQaPlugin.init = function(params) {
       if (eecQaPlugin.tests.hasOwnProperty(testName)) {
         var test = eecQaPlugin.tests[testName];
         $(eecQaPlugin.selector)
-          .append($('<div class="row" />')
-            .append($('<label class="field label eec-qa-status-' + test.status + '" />')
+          .append($('<div id="eec-qa-test-' + testName + '" class="row" />')
+            .append($('<label class="field label eec-qa-status eec-qa-status-' + test.status + '" />')
               .text(eecQaPlugin.getStatusLabel(test))
             )
-            .append($('<div class="field" />')
+            .append($('<div class="field eec-qa-description" />')
               .text(test.description)
             )
           )
