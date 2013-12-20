@@ -29,7 +29,7 @@ eecQaPlugin.tests = {
     total: 4,
     description: 'Tasks Complete',
     update: function() {
-      eecQaPlugin.callApi('Tasks', 'ByWorkOrder', {WorkOrderIds: this.workOrderId}, function(data) {
+      eecQaPlugin.callApi('Tasks', 'ByWorkOrder', {WorkOrderIds: eecQaPlugin.workOrderId}, function(data) {
         console.log(data);
       })
     }
