@@ -65,7 +65,7 @@ eecQaPlugin.tests = {
         } else {
           this.status = 'fail'
         }
-
+        eecQaPlugin.updateTestView('tasks');
       });
     }
   },
