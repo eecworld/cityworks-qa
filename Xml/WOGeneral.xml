@@ -570,7 +570,7 @@
                 },
                 selector: '#eec-qa-tests'  // Replace this with a selector to the DOM location where the tests should be injected.
               };
-              initQaPlugin(qaParams);
+              eecQaPlugin.init(qaParams);
             </script>
           ]]></text>
         </label>
