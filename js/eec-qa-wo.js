@@ -24,9 +24,22 @@ eecQaPlugin.callApi = function(service, method, parameters, callback) {
 
 eecQaPlugin.tests = {
   tasks: {
-    status: true,
+    status: 'fail',
     complete: 2,
     total: 4,
+    statusLabel: function() {
+      var label;
+      if (this.total > 0) {
+        label = this.complete + ' / ' + this.total;
+      } else {
+        if (this.status == 'pass') {
+          label = '\u2611';
+        } else {
+          label = '\u2610';
+        }
+      }
+      return label;
+    },
     description: 'Tasks Complete',
     update: function() {
       eecQaPlugin.callApi('Tasks', 'ByWorkOrder', {WorkOrderIds: [eecQaPlugin.workOrderId]}, function(data) {
@@ -105,15 +118,16 @@ eecQaPlugin.init = function(params) {
 
   var build = function() {
 
-    for (var test in eecQaPlugin.tests) {
-      if (eecQaPlugin.tests.hasOwnProperty(test)) {
+    for (var testName in eecQaPlugin.tests) {
+      if (eecQaPlugin.tests.hasOwnProperty(testName)) {
+        var test = eecQaPlugin.tests[testName];
         $(eecQaPlugin.selector)
           .append($('<div class="row" />')
-            .append($('<label class="field label" />')
-              .text(eecQaPlugin.tests[test].complete + '/' + eecQaPlugin.tests[test].total)
+            .append($('<label class="field label eec-qa-status-' + test.status + '" />')
+              .text(test.statusLabel())
             )
             .append($('<div class="field" />')
-              .text(eecQaPlugin.tests[test].description)
+              .text(test.description)
             )
           )
         ;
