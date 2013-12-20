@@ -46,12 +46,13 @@ eecQaPlugin.tests = {
       //TODO: Is this going to run async?
       eecQaPlugin.callApi('Tasks', 'ByWorkOrder', {WorkOrderIds: [eecQaPlugin.workOrderId]}, function(data) {
         console.log(data); //TODO: Remove
+        debugger;
         this.status = '';
         this.complete = 0;
         this.total = data.length;
         for (var i= 0; i<this.total; i++) {
           var task = data[i];
-          if (task.Status == 'COMPLETE') { this.complete++; }
+          if (task['Status'] == 'COMPLETE') { this.complete++; }
         }
         if (this.complete == this.total) {
           this.status = 'pass'
