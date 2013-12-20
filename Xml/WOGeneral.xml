@@ -539,18 +539,25 @@
     -->
       
 
-    <panel id="eec-qa-plugin" moveBefore="Map" width="482px" cssClass="eec-qa-plugin">
+    <panel id="eec-qa-plugin" moveBefore="Map" width="482px">
       <panelTitle>
         <text>Quality Assurance</text>
       </panelTitle>
       <row>
-        <label id="eec-qa-content" type="plain">
+        <label id="eec-qa-scripts" type="plain">
           <text><![CDATA[
             <link rel="stylesheet" type="text/css" href="/sacdou-cityworks-qa-plugin/css/eec-qa-plugin.css" />
             <script src="/sacdou-cityworks-qa-plugin/js/eec-qa-wo.js"></script>
             <script>
               alert('testing local');
             </script>
+          ]]></text>
+        </label>
+      </row>
+      <row>
+        <label id="eec-qa-content" type="plain">
+          <text><![CDATA[
+            <div id="eec-qa-tests"></div>
           ]]></text>
         </label>
       </row>
