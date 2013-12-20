@@ -548,9 +548,6 @@
           <text><![CDATA[
             <link rel="stylesheet" type="text/css" href="/sacdou-cityworks-qa-plugin/css/eec-qa-plugin.css" />
             <script src="/sacdou-cityworks-qa-plugin/js/eec-qa-wo.js"></script>
-            <script>
-              alert('testing local');
-            </script>
           ]]></text>
         </label>
       </row>
