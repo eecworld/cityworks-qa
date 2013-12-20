@@ -37,10 +37,19 @@ eecQaPlugin.getStatusLabel = function(test) {
 };
 
 eecQaPlugin.updateTestView = function(testName) {
-  $(eecQaPlugin.selector + ' #eec-qa-test-' + testName + ' label.eec-qa-status')
-    .toggleClass('eec-qa-status-pass eec-qa-status-fail')
-    .text(eecQaPlugin.getStatusLabel(testName))
-  ;
+  var statusView = $(eecQaPlugin.selector + ' #eec-qa-test-' + testName + ' label.eec-qa-status');
+  statusView.text(eecQaPlugin.getStatusLabel(testName));
+  if (eecQaPlugin.tests[testName].status == 'pass') {
+    statusView
+      .addClass('eec-qa-status-pass')
+      .removeClass('eec-qa-status-fail')
+    ;
+  } else {
+    statusView
+      .addClass('eec-qa-status-fail')
+      .removeClass('eec-qa-status-pass')
+    ;
+  }
 };
 
 eecQaPlugin.tests = {
@@ -145,7 +154,7 @@ eecQaPlugin.init = function(params) {
         var test = eecQaPlugin.tests[testName];
         $(eecQaPlugin.selector)
           .append($('<div id="eec-qa-test-' + testName + '" class="row" />')
-            .append($('<label class="field label eec-qa-status eec-qa-status-' + test.status + '" />')
+            .append($('<label class="field label eec-qa-status" />')
               .text(eecQaPlugin.getStatusLabel(test))
             )
             .append($('<div class="field eec-qa-description" />')
