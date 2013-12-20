@@ -22,29 +22,31 @@ eecQaPlugin.callApi = function(service, method, parameters, callback) {
   });
 };
 
+eecQaPlugin.getStatusLabel = function(test) {
+  var label;
+  if (test.total > 0) {
+    label = test.complete + ' / ' + test.total;
+  } else {
+    if (test.status == 'pass') {
+      label = '\u2611';
+    } else {
+      label = '\u2610';
+    }
+  }
+  return label;
+};
+
 eecQaPlugin.tests = {
   tasks: {
     status: 'fail',
     complete: 2,
     total: 4,
-    statusLabel: function() {
-      var label;
-      if (this.total > 0) {
-        label = this.complete + ' / ' + this.total;
-      } else {
-        if (this.status == 'pass') {
-          label = '\u2611';
-        } else {
-          label = '\u2610';
-        }
-      }
-      return label;
-    },
     description: 'Tasks Complete',
     update: function() {
       eecQaPlugin.callApi('Tasks', 'ByWorkOrder', {WorkOrderIds: [eecQaPlugin.workOrderId]}, function(data) {
-        console.log(data);
-      })
+        console.log(data); //TODO: Remove
+
+      });
     }
   },
   inspections: {
@@ -124,7 +126,7 @@ eecQaPlugin.init = function(params) {
         $(eecQaPlugin.selector)
           .append($('<div class="row" />')
             .append($('<label class="field label eec-qa-status-' + test.status + '" />')
-              .text(test.statusLabel())
+              .text(eecQaPlugin.getStatusLabel(test))
             )
             .append($('<div class="field" />')
               .text(test.description)
