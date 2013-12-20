@@ -33,9 +33,9 @@ var buildQaPlugin = function() {
         .append($('<label class="field label" />')
           .text(qaTests[i].complete + '/' + qaTests[i].total)
         )
-        .append($('<div class="field" />')
+/*        .append($('<div class="field" />')
           .text($(qaTests[i]).description)
-        )
+        )*/
       )
     ;
   }
