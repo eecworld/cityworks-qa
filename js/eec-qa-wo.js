@@ -1,4 +1,4 @@
-buildQaPlugin = function() {
+var buildQaPlugin = function() {
 
   var qaTests = {
     tasks: {
@@ -31,10 +31,10 @@ buildQaPlugin = function() {
     $('#eec-qa-tests')
       .append($('<div class="row" />')
         .append($('<label class="field label" />')
-          .append(qaTests[i].complete + '/' + qaTests[i].total)
+          .text(qaTests[i].complete + '/' + qaTests[i].total)
         )
         .append($('<div class="field" />')
-          .append($(qaTests[i]).description)
+          .text($(qaTests[i]).description)
         )
       )
     ;
@@ -42,4 +42,4 @@ buildQaPlugin = function() {
 
 };
 
-$(window).load(buildQaPlugin());
+buildQaPlugin();
