@@ -12,7 +12,7 @@ eecQaPlugin.callApi = function(service, method, parameters, callback) {
   }
   $.post(url, data, function(response) {
     if (response['Status'] == 0) {
-      if (typeof callback === 'function') { callback(response); }
+      if (typeof callback === 'function') { callback(response['Value']); }
     } else if (response['Status'] == 1) {
       alert('Error calling Cityworks API.  ' + response['Message']);
       if (typeof callback === 'function') { callback(); }
