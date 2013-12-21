@@ -204,7 +204,7 @@ eecQaPlugin.init = function(params) {
       }
     }
 
-    eecQaPlugin.update('tasks'); //TODO: Update all
+    eecQaPlugin.update(['tasks','labor']); //TODO: Add others
   };
 
   eecQaPlugin.application = params['application'];
