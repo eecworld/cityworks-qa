@@ -141,7 +141,7 @@ eecQaPlugin.init = function(params) {
 
     var authWithServer = function(callback) {
       eecQaPlugin.callApi('Authentication', 'Authenticate', eecQaPlugin['credentials'], function(data) {
-        eecQaPlugin.token = data['Value'];
+        eecQaPlugin.token = data;
         localStorage.setItem('eec-qa-token', JSON.stringify(eecQaPlugin.token));
         if (typeof callback === 'function') { callback(); }
       });
