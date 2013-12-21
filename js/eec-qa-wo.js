@@ -107,7 +107,6 @@ eecQaPlugin.tests = {
   labor: {
     description: 'Labor Entered',
     update: function() {
-      //TODO: Write.  LaborCost/WorkOrderCostsByWorkOrder
       eecQaPlugin.callApi('LaborCost', 'WorkOrderCostsByWorkOrder', {WorkOrderIds: [eecQaPlugin.workOrderId]}, function(data) {
         var status = '';
         if (data.length > 0) {  //TODO: More sophisticated check?
@@ -116,19 +115,35 @@ eecQaPlugin.tests = {
           status = 'fail';
         }
         eecQaPlugin.setTestResults('labor', status);
-      })
+      });
     }
   },
   equipment: {
     description: 'Equipment Entered',
     update: function() {
-      //TODO: Write.  EquipmentCost/WorkOrderCostsByWorkOrder
+      eecQaPlugin.callApi('EquipmentCost', 'WorkOrderCostsByWorkOrder', {WorkOrderIds: [eecQaPlugin.workOrderId]}, function(data) {
+        var status = '';
+        if (data.length > 0) {  //TODO: More sophisticated check?
+          status = 'pass';
+        } else {
+          status = 'fail';
+        }
+        eecQaPlugin.setTestResults('equipment', status);
+      });
     }
   },
   materials: {
     description: 'Materials Entered',
     update: function() {
-      //TODO: Write.  MaterialCost/WorkOrderCostsByWorkOrder
+      eecQaPlugin.callApi('MaterialCost', 'WorkOrderCostsByWorkOrder', {WorkOrderIds: [eecQaPlugin.workOrderId]}, function(data) {
+        var status = '';
+        if (data.length > 0) {  //TODO: More sophisticated check?
+          status = 'pass';
+        } else {
+          status = 'fail';
+        }
+        eecQaPlugin.setTestResults('materials', status);
+      });
     }
   }
 };
