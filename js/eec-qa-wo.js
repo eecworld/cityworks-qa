@@ -151,7 +151,7 @@ eecQaPlugin.init = function(params) {
     if (tokenSave == null) {
       authWithServer(callback);
     } else {
-      var token = JSON.parse();  //TODO: Check token with Authentication/Validate service
+      var token = JSON.parse(tokenSave);  //TODO: Check token with Authentication/Validate service
       if (token['Expires'] < new Date()) {  //TODO: Timezone check
         authWithServer(callback);
       } else {
