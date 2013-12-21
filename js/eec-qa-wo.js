@@ -60,20 +60,21 @@ eecQaPlugin.tests = {
     total: 0,
     description: 'Tasks Complete',
     update: function() {
+      var me = this;
       //TODO: Is this going to run async?
       eecQaPlugin.callApi('Tasks', 'ByWorkOrder', {WorkOrderIds: [eecQaPlugin.workOrderId]}, function(data) {
         debugger;  //TODO: Remove
-        this.status = '';
-        this.complete = 0;
-        this.total = data.length;
-        for (var i= 0; i<this.total; i++) {
+        me.status = '';
+        me.complete = 0;
+        me.total = data.length;
+        for (var i= 0; i<me.total; i++) {
           var task = data[i];
-          if (task['Status'] == 'COMPLETE') { this.complete++; }
+          if (task['Status'] == 'COMPLETE') { me.complete++; }
         }
-        if (this.complete == this.total) {
-          this.status = 'pass'
+        if (me.complete == me.total) {
+          me.status = 'pass'
         } else {
-          this.status = 'fail'
+          me.status = 'fail'
         }
         eecQaPlugin.updateTestView('tasks');
       });
