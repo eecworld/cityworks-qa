@@ -1,0 +1,14 @@
+div.eec-qa-description {
+  font-weight: bold;
+}
+label.eec-qa-status {
+  font-weight: bold;
+  text-align: center !important;
+  font-size: 20px;
+}
+label.eec-qa-status-fail {
+  background-color: lightcoral;
+}
+label.eec-qa-status-pass {
+  background-color: lightgreen;
+}
