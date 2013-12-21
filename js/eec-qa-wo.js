@@ -84,22 +84,28 @@ eecQaPlugin.tests = {
     }
   },
   inspections: {
-
+    description: 'Inspections Complete',
+    update: function() {}
   },
   customFields: {
-
+    description: 'Required Custom Fields Filled In',
+    update: function() {}
   },
   requiredFields: {
-
+    description: 'Other Required Fields Filled In',
+    update: function() {}
   },
   labor: {
-
+    description: 'Labor Entered',
+    update: function() {}
   },
   equipment: {
-
+    description: 'Equipment Entered',
+    update: function() {}
   },
   materials: {
-
+    description: 'Materials Entered',
+    update: function() {}
   }
 };
 
