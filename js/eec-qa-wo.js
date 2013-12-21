@@ -53,6 +53,14 @@ eecQaPlugin.updateTestView = function(testName) {
   }
 };
 
+eecQaPlugin.setTestResults = function(testName, status, complete, total) {
+  var test = eecQaPlugin.tests[testName];
+  test.status = status;
+  test.complete = complete;
+  test.total = total;
+  eecQaPlugin.updateTestView(testName);
+};
+
 eecQaPlugin.tests = {
   tasks: {
     status: '',
@@ -60,23 +68,21 @@ eecQaPlugin.tests = {
     total: 0,
     description: 'Tasks Complete',
     update: function() {
-      var me = this;
       //TODO: Is this going to run async?
       eecQaPlugin.callApi('Tasks', 'ByWorkOrder', {WorkOrderIds: [eecQaPlugin.workOrderId]}, function(data) {
-        debugger;  //TODO: Remove
-        me.status = '';
-        me.complete = 0;
-        me.total = data.length;
-        for (var i= 0; i<me.total; i++) {
+        var status = '';
+        var complete = 0;
+        var total = data.length;
+        for (var i= 0; i<total; i++) {
           var task = data[i];
-          if (task['Status'] == 'COMPLETE') { me.complete++; }
+          if (task['Status'] == 'COMPLETE') { complete++; }
         }
-        if (me.complete == me.total) {
-          me.status = 'pass'
+        if (complete == total) {
+          status = 'pass'
         } else {
-          me.status = 'fail'
+          status = 'fail'
         }
-        eecQaPlugin.updateTestView('tasks');
+        eecQaPlugin.setTestResults('tasks', status, complete, total);
       });
     }
   },
