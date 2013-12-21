@@ -546,7 +546,7 @@
       <row>
         <label id="eec-qa-styles" type="plain">
           <text><![CDATA[
-            <link rel="stylesheet" type="text/css" href="/sacdou-cityworks-qa-plugin/css/eec-qa-plugin.css" />
+            <link rel="stylesheet" type="text/css" href="/sacdou-cityworks-qa-plugin/css/eec-qa-wo.css" />
           ]]></text>
         </label>
       </row>
