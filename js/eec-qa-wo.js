@@ -61,7 +61,7 @@ eecQaPlugin.setTestResults = function(testName, status, complete, total) {
   eecQaPlugin.updateTestView(testName);
 };
 
-eecQaPlugin.tests = {
+eecQaPlugin.tests = {  //TODO: Dynamically specify which tests in init params so they can be assigned per user group through XML?
   tasks: {
     description: 'Tasks Complete',
     update: function() {
