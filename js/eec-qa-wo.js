@@ -147,14 +147,17 @@ eecQaPlugin.init = function(params) {
       });
     };
 
-    var token = JSON.parse(localStorage.getItem('eec-qa-token'));  //TODO: Check token with Authentication/Validate service
-    if (token == null) {
-      authWithServer(callback);
-    } else if (token['Expires'] < new Date()) {  //TODO: Timezone check
+    var tokenSave = localStorage.getItem('eec-qa-token');
+    if (tokenSave == null) {
       authWithServer(callback);
     } else {
-      eecQaPlugin.token = token;
-      if (typeof callback === 'function') { callback(); }
+      var token = JSON.parse();  //TODO: Check token with Authentication/Validate service
+      if (token['Expires'] < new Date()) {  //TODO: Timezone check
+        authWithServer(callback);
+      } else {
+        eecQaPlugin.token = token;
+        if (typeof callback === 'function') { callback(); }
+      }
     }
   };
 
