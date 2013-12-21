@@ -10,7 +10,7 @@ eecQaPlugin.callApi = function(service, method, parameters, callback) {
   if (!(service == 'Authentication' && method == 'Authenticate')) {
     data.token = eecQaPlugin.token['Token'];
   }
-  $.post(url, data, function(response) {
+  $.get(url, data, function(response) {
     if (response['Status'] == 0) {
       if (typeof callback === 'function') { callback(response['Value']); }
     } else if (response['Status'] == 1) {
@@ -166,7 +166,7 @@ eecQaPlugin.init = function(params) {
     var authWithServer = function(callback) {
       eecQaPlugin.callApi('Authentication', 'Authenticate', eecQaPlugin['credentials'], function(data) {
         eecQaPlugin.token = data;
-        localStorage.setItem('eec-qa-token', JSON.stringify(eecQaPlugin.token));
+        localStorage.setItem('eec-qa-token', JSON.stringify(eecQaPlugin.token));  //TODO: Use sessionStorage instead?
         if (typeof callback === 'function') { callback(); }
       });
     };
