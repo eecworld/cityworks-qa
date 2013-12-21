@@ -63,9 +63,6 @@ eecQaPlugin.setTestResults = function(testName, status, complete, total) {
 
 eecQaPlugin.tests = {
   tasks: {
-    status: '',
-    complete: 0,
-    total: 0,
     description: 'Tasks Complete',
     update: function() {
       //TODO: Is this going to run async?
