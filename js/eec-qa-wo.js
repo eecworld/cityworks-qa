@@ -56,8 +56,8 @@ eecQaPlugin.updateTestView = function(testName) {
 eecQaPlugin.setTestResults = function(testName, status, complete, total) {
   var test = eecQaPlugin.tests[testName];
   test.status = status;
-  test.complete = complete;
-  test.total = total;
+  if (complete) { test.complete = complete; }
+  if (total) { test.total = total; }
   eecQaPlugin.updateTestView(testName);
 };
 
@@ -85,27 +85,51 @@ eecQaPlugin.tests = {
   },
   inspections: {
     description: 'Inspections Complete',
-    update: function() {}
+    update: function() {
+      //TODO: Write.  It doesn't look like there's going to be an easy way to get "Related Inspections" through the API.
+      //We'll probably have to write our own API to retrieve the relationships.  But getting the status can use the
+      //official one.
+      //OR... we can rely on the work order form to list the related inspections for us (and even their statuses too!)
+    }
   },
   customFields: {
     description: 'Required Custom Fields Filled In',
-    update: function() {}
+    update: function() {
+      //TODO: Write.  Note we'll have to write our own custom fields API because Cityworks doesn't have one.
+    }
   },
   requiredFields: {
     description: 'Other Required Fields Filled In',
-    update: function() {}
+    update: function() {
+      //TODO: Write.  This should be able to be done completely cosmetically without any network traffic.
+    }
   },
   labor: {
     description: 'Labor Entered',
-    update: function() {}
+    update: function() {
+      //TODO: Write.  LaborCost/WorkOrderCostsByWorkOrder
+      eecQaPlugin.callApi('LaborCost', 'WorkOrderCostsByWorkOrder', {WorkOrderIds: [eecQaPlugin.workOrderId]}, function(data) {
+        var status = '';
+        if (data.length > 0) {  //TODO: More sophisticated check?
+          status = 'pass';
+        } else {
+          status = 'fail';
+        }
+        eecQaPlugin.setTestResults('labor', status);
+      })
+    }
   },
   equipment: {
     description: 'Equipment Entered',
-    update: function() {}
+    update: function() {
+      //TODO: Write.  EquipmentCost/WorkOrderCostsByWorkOrder
+    }
   },
   materials: {
     description: 'Materials Entered',
-    update: function() {}
+    update: function() {
+      //TODO: Write.  MaterialCost/WorkOrderCostsByWorkOrder
+    }
   }
 };
 
@@ -148,7 +172,8 @@ eecQaPlugin.init = function(params) {
     };
 
     var tokenSave = localStorage.getItem('eec-qa-token');
-    if (tokenSave == null) {
+    if (tokenSave == null) { //TODO: Need better error handling than this.  Basically, if anything goes not perfect,
+                             // then re-auth with the server (i.e. don't assume the localStorage value isn't messed up)
       authWithServer(callback);
     } else {
       var token = JSON.parse(tokenSave);  //TODO: Check token with Authentication/Validate service
