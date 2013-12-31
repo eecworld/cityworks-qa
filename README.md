@@ -13,7 +13,7 @@ If not, you'll need to re-map some of the parameters in the XML.
 ### Proxy User
 
 You'll need to create a user in Cityworks who has view permissions (but nothing else) to all things you'll need to test.
-It should be an employee, in at least one group (probably only one group, like a system group or something), and be registered on Cityworks Server with a password.
+It should be an employee, in at least one group (probably only one group, like a system group or something), and be authorized and registered on Cityworks Server with a password.
 It doesn't need to be part of any server groups, have any inbox or XML configuration, employee relates, or anything like that.
 
 ### XML
