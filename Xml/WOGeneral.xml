@@ -5,20 +5,10 @@
   <layout>
 
     <!-- THE panel, panelTitle, row, AND label ELEMENTS CAN BE MOVED OR MODIFIED IF DESIRED TO CHANGE WHERE THE TOOL APPEARS ON THE PAGE -->
-    <panel id="eec-qa-plugin" moveBefore="Map" width="482px">
+    <panel id="eec-qa-plugin" moveBefore="General" width="482px">
       <panelTitle>
         <text>Quality Assurance</text>
       </panelTitle>
-
-      <!-- STYLES INJECTION -->
-      <row>
-        <label id="eec-qa-styles" type="plain">
-          <text><![CDATA[
-            <!-- CHANGE THE PATH AFTER href TO THE LOCATION OF THE CSS FILE FOR THIS TOOL -->
-            <link rel="stylesheet" type="text/css" href="/sacdou-cityworks-qa-plugin/css/eec-qa-wo.css" />
-          ]]></text>
-        </label>
-      </row>
 
       <!-- THIS SECTION CAN BE MOVED OR MODIFIED IF DESIRED TO CHANGE WHERE THE TOOL APPEARS WITHIN THE PANEL -->
       <row>
@@ -28,12 +18,15 @@
           ]]></text>
         </label>
       </row>
+    </panel>
 
-      <!-- SCRIPTS INJECTION: SET PARAMETERS HERE -->
-      <row>
-        <label id="eec-qa-scripts" type="plain">
+    <!-- SCRIPTS INJECTION: SET PARAMETERS HERE -->
+    <panel id="eec-qa-scripts" moveAfter="UniversalCustomFieldsPanel" type="plain">
+      <row type="plain">
+        <label id="eec-qa-code" type="plain">
           <text><![CDATA[
-            <!-- CHANGE THE PATH AFTER src TO THE LOCATION OF THE JS FILE FOR THIS TOOL -->
+            <!-- CHANGE THE PATHS AFTER href AND src TO THE LOCATION OF THE CSS FILE FOR THIS TOOL -->
+            <link rel="stylesheet" type="text/css" href="/sacdou-cityworks-qa-plugin/css/eec-qa-wo.css" />
             <script src="/sacdou-cityworks-qa-plugin/js/eec-qa-wo.js"></script>
 
             <!-- CHANGE THE TOOL'S PARAMETERS BELOW AS INDICATED IN THE COMMENTS -->
