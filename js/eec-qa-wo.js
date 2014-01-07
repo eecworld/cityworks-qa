@@ -56,7 +56,7 @@ eecQaPlugin.updateTestView = function(testName) {
 eecQaPlugin.setTestResults = function(testName, status, complete, total) {
   var test = eecQaPlugin.tests[testName];
   test.status = status;
-  if (complete) { test.complete = complete; }
+  if (complete != undefined) { test.complete = complete; }
   if (total) { test.total = total; }
   eecQaPlugin.updateTestView(testName);
 };
