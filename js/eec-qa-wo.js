@@ -95,13 +95,13 @@ eecQaPlugin.tests = {  //TODO: Dynamically specify which tests in init params so
   customFields: {
     description: 'Required Custom Fields Filled In',
     update: function() {
-      //TODO: Write.  Note we'll have to write our own custom fields API because Cityworks doesn't have one.
+      //TODO: Write.  Note we'll have to write our own custom fields API because Cityworks doesn't have one (or do it totally cosmetically).
     }
   },
   requiredFields: {
     description: 'Other Required Fields Filled In',
     update: function() {
-      //TODO: Write.  This should be able to be done completely cosmetically without any network traffic.
+      //TODO: Write.  This should be able to be done completely cosmetically without any network traffic.  But what about required fields on other pages (i.e. arrived on site)?
     }
   },
   labor: {
