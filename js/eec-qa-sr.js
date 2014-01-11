@@ -1,33 +1,15 @@
-//TODO: These are WO-specific.  Make SR-specific.
+eecQaPlugin.getControlValue = function(controlId) {
+  return $('#' + cw.LayoutManagers.SRGeneral.Controls.get('cboRequestId')).val()
+};
+
 eecQaPlugin.tests = {  //TODO: Dynamically specify which tests in init params so they can be assigned per user group through XML?
-  tasks: {
-    description: 'Tasks Complete',
-    update: function() {
-      //TODO: Is this going to run async?
-      eecQaPlugin.callApi('Tasks', 'ByWorkOrder', {WorkOrderIds: [eecQaPlugin.recordId]}, function(data) {
-        var status = '';
-        var complete = 0;
-        var total = data.length;
-        for (var i= 0; i<total; i++) {
-          var task = data[i];
-          if (task['Status'] == 'COMPLETE') { complete++; }
-        }
-        if (complete == total) {
-          status = 'pass'
-        } else {
-          status = 'fail'
-        }
-        eecQaPlugin.setTestResults('tasks', status, complete, total);
-      });
-    }
-  },
   inspections: {
     description: 'Inspections Complete',
     update: function() {
       //TODO: Write.  It doesn't look like there's going to be an easy way to get "Related Inspections" through the API.
       //We'll probably have to write our own API to retrieve the relationships.  But getting the status can use the
       //official one.
-      //OR... we can rely on the work order form to list the related inspections for us (and even their statuses too!)
+      //OR... we can rely on the service request form to list the related inspections for us (and even their statuses too!)
     }
   },
   customFields: {
@@ -39,13 +21,13 @@ eecQaPlugin.tests = {  //TODO: Dynamically specify which tests in init params so
   requiredFields: {
     description: 'Other Required Fields Filled In',
     update: function() {
-      //TODO: Write.  This should be able to be done completely cosmetically without any network traffic.  But what about required fields on other pages (i.e. arrived on site)?
+      //TODO: Write.  This should be able to be done (and may HAVE to be done) completely cosmetically without any network traffic.  But what about required fields on other pages (i.e. arrived on site)?
     }
   },
   labor: {
     description: 'Labor Entered',
     update: function() {
-      eecQaPlugin.callApi('LaborCost', 'WorkOrderCostsByWorkOrder', {WorkOrderIds: [eecQaPlugin.recordId]}, function(data) {
+      eecQaPlugin.callApi('LaborCost', 'WorkOrderCostsByWorkOrder', {WorkOrderIds: [eecQaPlugin.recordId]}, function(data) {  //TODO: Work with SR
         var status = '';
         if (data.length > 0) {  //TODO: More sophisticated check?
           status = 'pass';
@@ -53,34 +35,6 @@ eecQaPlugin.tests = {  //TODO: Dynamically specify which tests in init params so
           status = 'fail';
         }
         eecQaPlugin.setTestResults('labor', status);
-      });
-    }
-  },
-  equipment: {
-    description: 'Equipment Entered',
-    update: function() {
-      eecQaPlugin.callApi('EquipmentCost', 'WorkOrderCostsByWorkOrder', {WorkOrderIds: [eecQaPlugin.recordId]}, function(data) {
-        var status = '';
-        if (data.length > 0) {  //TODO: More sophisticated check?
-          status = 'pass';
-        } else {
-          status = 'fail';
-        }
-        eecQaPlugin.setTestResults('equipment', status);
-      });
-    }
-  },
-  materials: {
-    description: 'Materials Entered',
-    update: function() {
-      eecQaPlugin.callApi('MaterialCost', 'WorkOrderCostsByWorkOrder', {WorkOrderIds: [eecQaPlugin.recordId]}, function(data) {
-        var status = '';
-        if (data.length > 0) {  //TODO: More sophisticated check?
-          status = 'pass';
-        } else {
-          status = 'fail';
-        }
-        eecQaPlugin.setTestResults('materials', status);
       });
     }
   }

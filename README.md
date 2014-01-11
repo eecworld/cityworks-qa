@@ -18,9 +18,9 @@ It doesn't need to be part of any server groups, have any inbox or XML configura
 
 ### XML
 
-The tool is injected and configured through Cityworks XML customization.  An example WOGeneral.xml file is included in the Xml directory in this project.
+The tool is injected and configured through Cityworks XML customization.  Example .xml files are included in the Xml directory in this project.
 If you don't already have any XML configuration, you can deploy this file directly into an XML folder per Cityworks instructions.
-If you have an existing Cityworks XML configuration for the WOGeneral page, you can probably just copy and paste everything between the <layout> tags to the end of the <layout> section in your existing WOGeneral.xml file.
+If you have existing Cityworks XML configurations for the WOGeneral and SRGeneral pages, you can probably just copy and paste everything between the <layout> tags to the end of the <layout> section in your existing WOGeneral.xml or SRGeneral.xml files.
 
 See the provided XML file for notes on where to make configuration changes.
 The main changes are made in the SCRIPTS INJECTION section.

@@ -1,3 +1,7 @@
+eecQaPlugin.getControlValue = function(controlId) {
+  return $('#' + cw.LayoutManagers.WOGeneral.Controls.get(controlId)).val();
+};
+
 eecQaPlugin.tests = {  //TODO: Dynamically specify which tests in init params so they can be assigned per user group through XML?
   tasks: {
     description: 'Tasks Complete',
@@ -39,6 +43,12 @@ eecQaPlugin.tests = {  //TODO: Dynamically specify which tests in init params so
     description: 'Other Required Fields Filled In',
     update: function() {
       //TODO: Write.  This should be able to be done completely cosmetically without any network traffic.  But what about required fields on other pages (i.e. arrived on site)?
+    }
+  },
+  asset: {
+    description: 'Attached to an Asset',
+    update: function() {
+      //TODO: Write.
     }
   },
   labor: {

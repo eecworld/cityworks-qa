@@ -1,9 +1,5 @@
 var eecQaPlugin = {};
 
-eecQaPlugin.getControlValue = function(controlId) {
-  return $('#' + cw.LayoutManagers.WOGeneral.Controls.get(controlId)).val();
-};
-
 eecQaPlugin.callApi = function(service, method, parameters, callback) {
   var url = eecQaPlugin.application + '/services/AMS/' + service + '/' + method;
   var data = { data: JSON.stringify(parameters) };
