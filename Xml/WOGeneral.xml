@@ -4,14 +4,14 @@
 
     <!-- FOR TESTING: various required field types -->
     <control id="cboStatus" required="true"></control><!--dropdown (select)-->
-    <control id="txtNewComments" required="true"></control><!--large text (textarea)-->
+    <control id="txtInstructions" required="true"></control><!--large text (textarea)-->
     <control id="calActualFinishDate" required="true"></control><!--date picker (input.text)-->
-    <control id="chkIsReactive" required="true"></control><!--checkbox (input.checkbox)--><!--TODO: Does this make sense?-->
     <control id="txtAcctNum" required="true"></control><!--combobox (input.text)-->
     <control id="txtUnitsAccomplished" required="true"></control><!--text (input.text)-->
     <control id="txtInitiatedBy" required="true"></control><!--read only (input.text)--><!--TODO: Does this make sense?-->
+    <!--NOTE: Required checkboxes do not make sense-->
 
-    <!-- FOR TESTING: eliminating all required fields
+    <!-- FOR TESTING: eliminating required fields
     <control id="calActualFinishDate" required="false"></control>
     -->
 

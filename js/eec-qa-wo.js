@@ -62,8 +62,9 @@ eecQaPlugin.tests = {  //TODO: Dynamically specify which tests in init params so
   requiredFields: {
     description: 'Other Required Fields Filled In',
     update: function() {
-      //TODO: Write.  This should be able to be done completely cosmetically without any network traffic.  But what about required fields on other pages (i.e. arrived on site)?
+      //TODO: What about required fields on other pages (i.e. arrived on site)?
       var fieldEls = $('label[class*=Required]').next().find('input[type=text], select') //TODO: Test selector against all input types.
+      //TODO: Include: checkbox, textarea
       var status = '';
       var complete = 0;
       var total = fieldEls.length;
