@@ -1,6 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <webLayout xmlns="http://www.azteca.com/cityworks/layout/webLayout">
   <controls>
+
+    <!-- EXAMPLE OF EXTRA REQUIRED FIELD (for testing checks) -->
+    <control id="cboStatus" required="true"></control>
+
   </controls>
   <layout>
 
@@ -48,6 +52,5 @@
     </panel>
 
   </layout>
-  <messages>
-  </messages>
+  <messages></messages>
 </webLayout>
