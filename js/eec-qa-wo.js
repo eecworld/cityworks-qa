@@ -48,7 +48,15 @@ eecQaPlugin.tests = {  //TODO: Dynamically specify which tests in init params so
   asset: {
     description: 'Attached to an Asset',
     update: function() {
-      //TODO: Write.
+      eecQaPlugin.callApi('WorkOrder', 'Entities', {WorkOrderIds: [eecQaPlugin.recordId]}, function(data) {
+        var status = '';
+        if (data.length > 0) {  //TODO: More sophisticated check?
+          status = 'pass';
+        } else {
+          status = 'fail';
+        }
+        eecQaPlugin.setTestResults('asset', status);
+      });
     }
   },
   labor: {
