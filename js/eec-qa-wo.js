@@ -1,5 +1,5 @@
-eecQaPlugin.getControlValue = function(controlId) {
-  return $('#' + cw.LayoutManagers.WOGeneral.Controls.get(controlId)).val();
+eecQaPlugin.getControl = function(controlId) {
+  return $('#' + cw.LayoutManagers.WOGeneral.Controls.get(controlId));
 };
 
 eecQaPlugin.tests = {  //TODO: Dynamically specify which tests in init params so they can be assigned per user group through XML?
@@ -27,6 +27,7 @@ eecQaPlugin.tests = {  //TODO: Dynamically specify which tests in init params so
   inspections: {
     description: 'Inspections Complete',
     update: function() {
+
       //TODO: Write.  It doesn't look like there's going to be an easy way to get "Related Inspections" through the API.
       //We'll probably have to write our own API to retrieve the relationships.  But getting the status can use the
       //official one.
@@ -109,4 +110,4 @@ eecQaPlugin.tests = {  //TODO: Dynamically specify which tests in init params so
   }
 };
 
-eecQaPlugin.recordId = eecQaPlugin.getControlValue('cboWorkOrderId');
+eecQaPlugin.recordId = eecQaPlugin.getControl('cboWorkOrderId').val();
