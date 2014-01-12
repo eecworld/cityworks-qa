@@ -27,11 +27,11 @@ eecQaPlugin.tests = {  //TODO: Dynamically specify which tests in init params so
   inspections: {
     description: 'Inspections Complete',
     update: function() {
+      debugger;
       var inspIds = eecQaPlugin.getControl('grdInspections').find('.rgRow td:eq(1) a, .rgAltRow td:eq(1) a');
       for (var i=0; i++; i<inspIds.length) {
         var inspId = $(inspIds[i]).text();
         console.log(inspId);
-        debugger
       }
       //TODO: Write.  It doesn't look like there's going to be an easy way to get "Related Inspections" through the API.
       //We'll probably have to write our own API to retrieve the relationships.  But getting the status can use the
