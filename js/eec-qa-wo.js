@@ -50,10 +50,16 @@ eecQaPlugin.tests = {  //TODO: Dynamically specify which tests in init params so
     update: function() {
       eecQaPlugin.callApi('WorkOrder', 'Entities', {WorkOrderIds: [eecQaPlugin.recordId]}, function(data) {
         var status = '';
-        if (data.length > 0) {  //TODO: More sophisticated check?
-          status = 'pass';
-        } else {
+        if (data.length == 0) {  //TODO: More sophisticated check?
           status = 'fail';
+        } else if (data.legnth == 1) {
+          if (data[0].EntitySid == 0 && data[0].EntityUid == 0) {
+            status = 'fail';
+          } else {
+            status = 'pass';
+          }
+        } else {
+          status = 'pass';
         }
         eecQaPlugin.setTestResults('asset', status);
       });
