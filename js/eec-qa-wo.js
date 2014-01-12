@@ -53,14 +53,8 @@ eecQaPlugin.tests = {  //TODO: Dynamically specify which tests in init params so
       }
     }
   },
-  customFields: {
-    description: 'Required Custom Fields Filled In',
-    update: function() {
-      //TODO: Write.  Note we'll have to write our own custom fields API because Cityworks doesn't have one (or do it totally cosmetically).
-    }
-  },
   requiredFields: {
-    description: 'Other Required Fields Filled In',
+    description: 'Required Fields Filled In',
     update: function() {
       //TODO: What about required fields on other pages (i.e. arrived on site)?
       var fieldEls = $('[class*=Required]').next().find('input[type=text], select')

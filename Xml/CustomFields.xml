@@ -9,7 +9,7 @@
         <label id="eec-qa-cf-update-code" type="plain">
           <text><![CDATA[
             <script type="text/javascript">
-              eecQaPlugin.update();
+              eecQaPlugin && eecQaPlugin.update();
             </script>
           ]]></text>
         </label>

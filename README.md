@@ -39,3 +39,4 @@ To remedy this, the following code should be run in a location in the .xml after
     eecQaPlugin.update()
 
 This will update the existing counts to account for any required custom fields that have since been loaded.
+This will happen so fast that the initial count (which didn't take custom fields into account) won't even be seen by the user.
