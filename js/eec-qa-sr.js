@@ -1,5 +1,5 @@
 eecQaPlugin.getControl = function(controlId) {
-  return $('#' + cw.LayoutManagers.SRGeneral.Controls.get(controlId)).val()
+  return $('#' + cw.LayoutManagers.SRGeneral.Controls.get(controlId))
 };
 
 eecQaPlugin.tests = {  //TODO: Dynamically specify which tests in init params so they can be assigned per user group through XML?
