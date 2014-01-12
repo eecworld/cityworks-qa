@@ -128,7 +128,7 @@ eecQaPlugin.init = function(params) {
       }
     }
 
-    eecQaPlugin.update(['tasks','labor', 'equipment', 'materials']); //TODO: Add others as they're finished.
+    eecQaPlugin.update(); //TODO: Add others as they're finished.
   };
 
   eecQaPlugin.application = params['application'];
