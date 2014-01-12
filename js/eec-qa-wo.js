@@ -52,7 +52,7 @@ eecQaPlugin.tests = {  //TODO: Dynamically specify which tests in init params so
         var status = '';
         if (data.length == 0) {  //TODO: More sophisticated check?
           status = 'fail';
-        } else if (data.legnth == 1) {
+        } else if (data.length == 1) {
           if (data[0].IsBlank) {
             status = 'fail';
           } else {
