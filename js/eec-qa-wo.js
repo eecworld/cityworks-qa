@@ -29,8 +29,8 @@ eecQaPlugin.tests = {  //TODO: Dynamically specify which tests in init params so
     update: function() {
       debugger;
       var inspIds = eecQaPlugin.getControl('grdInspections').find('.rgRow td:eq(1) a, .rgAltRow td:eq(1) a');
-      inspIds.each(function(index, el) {
-        var inspId = el.text();
+      inspIds.each(function() {
+        var inspId = $(this).text();
         console.log(inspId);
       });
       //TODO: Write.  It doesn't look like there's going to be an easy way to get "Related Inspections" through the API.
