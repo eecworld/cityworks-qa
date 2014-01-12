@@ -1,4 +1,4 @@
-eecQaPlugin.getControlValue = function(controlId) {
+eecQaPlugin.getControl = function(controlId) {
   return $('#' + cw.LayoutManagers.SRGeneral.Controls.get(controlId)).val()
 };
 
@@ -48,4 +48,4 @@ eecQaPlugin.tests = {  //TODO: Dynamically specify which tests in init params so
   }
 };
 
-eecQaPlugin.recordId = eecQaPlugin.getControlValue('cboRequestId');
+eecQaPlugin.recordId = eecQaPlugin.getControl('cboRequestId').val();
