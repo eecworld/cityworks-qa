@@ -16,9 +16,9 @@ eecQaPlugin.tests = {  //TODO: Dynamically specify which tests in init params so
           if (task['Status'] == 'COMPLETE') { complete++; }
         }
         if (complete == total) {
-          status = 'pass'
+          status = 'pass';
         } else {
-          status = 'fail'
+          status = 'fail';
         }
         eecQaPlugin.setTestResults('tasks', status, complete, total);
       });
@@ -27,16 +27,30 @@ eecQaPlugin.tests = {  //TODO: Dynamically specify which tests in init params so
   inspections: {
     description: 'Inspections Complete',
     update: function() {
-      debugger;
-      var inspIds = eecQaPlugin.getControl('grdInspections').find('.rgRow td:eq(1) a, .rgAltRow td:eq(1) a');
-      inspIds.each(function() {
-        var inspId = $(this).text();
-        console.log(inspId);
+      var inspIdEls = eecQaPlugin.getControl('grdInspections').find('.rgRow td:eq(1) a, .rgAltRow td:eq(1) a');
+      var inspIds = [];
+      inspIdEls.each(function() {
+        inspIds.push(Number($(this).text()));
       });
-      //TODO: Write.  It doesn't look like there's going to be an easy way to get "Related Inspections" through the API.
-      //We'll probably have to write our own API to retrieve the relationships.  But getting the status can use the
-      //official one.
-      //OR... we can rely on the work order form to list the related inspections for us (and even their statuses too!)
+      if (inspIds.length == 0) {
+        eecQaPlugin.setTestResults('inspections', 'pass', 0, 0);
+      } else {
+        eecQaPlugin.callApi('Inspection', 'ByIds', {InspectionIds: inspIds}, function(data) {
+          var status = '';
+          var complete = 0;
+          var total = data.length;
+          for (var i=0; i<total; i++) {
+            var insp = data[i];
+            if (insp['IsClosed']) { complete++; }
+          }
+          if (complete == total) {
+            status = 'pass';
+          } else {
+            status = 'fail';
+          }
+          eecQaPlugin.setTestResults('inspections', status, complete, total);
+        });
+      }
     }
   },
   customFields: {
