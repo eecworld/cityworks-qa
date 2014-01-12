@@ -1,5 +1,5 @@
 eecQaPlugin.getControlValue = function(controlId) {
-  return $('#' + cw.LayoutManagers.SRGeneral.Controls.get('cboRequestId')).val()
+  return $('#' + cw.LayoutManagers.SRGeneral.Controls.get(controlId)).val()
 };
 
 eecQaPlugin.tests = {  //TODO: Dynamically specify which tests in init params so they can be assigned per user group through XML?
@@ -27,7 +27,7 @@ eecQaPlugin.tests = {  //TODO: Dynamically specify which tests in init params so
   labor: {
     description: 'Labor Entered',
     update: function() {
-      eecQaPlugin.callApi('LaborCost', 'WorkOrderCostsByWorkOrder', {WorkOrderIds: [eecQaPlugin.recordId]}, function(data) {  //TODO: Work with SR
+      eecQaPlugin.callApi('LaborCost', 'RequestCostsByRequest', {RequestIds: [eecQaPlugin.recordId]}, function(data) {
         var status = '';
         if (data.length > 0) {  //TODO: More sophisticated check?
           status = 'pass';
@@ -40,4 +40,4 @@ eecQaPlugin.tests = {  //TODO: Dynamically specify which tests in init params so
   }
 };
 
-eecQaPlugin.recordId = eecQaPlugin.getControlValue('cboWorkOrderId');  //TODO: Work with SR
+eecQaPlugin.recordId = eecQaPlugin.getControlValue('cboRequestId');
