@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<webLayout xmlns="http://www.azteca.com/cityworks/layout/webLayout">
+  <controls></controls>
+  <layout>
+
+    <!-- SCRIPTS INJECTION: NEEDED BECAUSE REQUIRED FIELDS WON'T INCLUDE CUSTOM FIELDS OTHERWISE -->
+    <panel id="eec-qa-cf-update-scripts" moveAfter="CustomDataFields" type="plain">
+      <row type="plain">
+        <label id="eec-qa-cf-update-code" type="plain">
+          <text><![CDATA[
+            <script type="text/javascript">
+              eecQaPlugin.update();
+            </script>
+          ]]></text>
+        </label>
+      </row>
+    </panel>
+
+  </layout>
+  <messages></messages>
+</webLayout>
