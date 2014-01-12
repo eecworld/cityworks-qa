@@ -2,14 +2,15 @@
 <webLayout xmlns="http://www.azteca.com/cityworks/layout/webLayout">
   <controls>
 
-    <!-- FOR TESTING: various required field types -->
-    <control id="cboStatus" required="true"></control><!--dropdown (select)-->
-    <!--<control id="txtInstructions" required="true"></control>&lt;!&ndash;large text (textarea)&ndash;&gt;-->
-    <control id="calActualFinishDate" required="true"></control><!--date picker (input.text)-->
-    <control id="txtAcctNum" required="true"></control><!--combobox (input.text)-->
-    <control id="txtUnitsAccomplished" required="true"></control><!--text (input.text)-->
-    <control id="txtInitiatedBy" required="true"></control><!--read only (input.text)--><!--TODO: Does this make sense?-->
-    <!--NOTE: Required checkboxes do not make sense-->
+    <!-- FOR TESTING: various required field types
+    <control id="cboStatus" required="true"></control>
+    <control id="calActualFinishDate" required="true"></control>
+    <control id="txtAcctNum" required="true"></control>
+    <control id="txtUnitsAccomplished" required="true"></control>
+    <control id="txtInitiatedBy" required="true"></control>
+    -->
+    <!--NOTE: Required checkboxes do not register with Cityworks-->
+    <!--NOTE: Required large textboxes (html:textarea) do not register with Cityworks-->
 
     <!-- FOR TESTING: eliminating required fields
     <control id="calActualFinishDate" required="false"></control>
