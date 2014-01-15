@@ -63,7 +63,7 @@ eecQaPlugin.tests = {  //TODO: Dynamically specify which tests in init params so
       var total = fieldEls.length;
       fieldEls.each(function() {
         var content = $(this).val();
-        if (content != '') { complete++; }
+        if (content != '') { complete++; } //TODO: Don't include date placeholder MM/DD/YYYY
       });
       if (complete == total) {
         status = 'pass';
