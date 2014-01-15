@@ -3,9 +3,9 @@ var eecQaPlugin = {};
 eecQaPlugin.callApi = function(service, method, parameters, callback) {
   var url = eecQaPlugin.application + '/services/AMS/' + service + '/' + method;
   var data = { data: JSON.stringify(parameters) };
-  if (!(service == 'Authentication' && method == 'Authenticate')) {
+  /*if (!(service == 'Authentication' && method == 'Authenticate')) {
     data.token = eecQaPlugin.token['Token'];
-  }
+  }*/
   $.get(url, data, function(response) {
     if (response['Status'] == 0) {
       if (typeof callback === 'function') { callback(response['Value']); }
@@ -85,7 +85,7 @@ eecQaPlugin.update = function(tests) {
 
 eecQaPlugin.init = function(params) {
 
-  var authenticate = function(callback) {
+/*  var authenticate = function(callback) {
 
     var authWithServer = function(callback) {
       eecQaPlugin.callApi('Authentication', 'Authenticate', eecQaPlugin['credentials'], function(data) {
@@ -108,7 +108,7 @@ eecQaPlugin.init = function(params) {
         if (typeof callback === 'function') { callback(); }
       }
     }
-  };
+  };*/
 
   var build = function() {
 
@@ -132,9 +132,10 @@ eecQaPlugin.init = function(params) {
   };
 
   eecQaPlugin.application = params['application'];
-  eecQaPlugin.credentials = params['credentials'];
+//  eecQaPlugin.credentials = params['credentials'];
   eecQaPlugin.selector = params['selector'];
 
-  authenticate(build);
+//  authenticate(build);
+  build();
 
 };
