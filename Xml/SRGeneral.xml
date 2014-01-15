@@ -34,10 +34,6 @@
             <script type="text/javascript">
               var qaParams = {
                 application: "/cityworks_demo",  // Replace this with the path to your Cityworks instance (with no trailing "/" or "Default.aspx")
-                credentials: {
-                  LoginName: "qa",  // Replace this with a proxy login for the QA plugin.
-                  Password: "qa"    // Replace this with the password for the proxy login.
-                },
                 selector: "#eec-qa-tests"  // Replace this with a selector to the DOM location where the tests should be injected.
               };
               eecQaPlugin.init(qaParams);
