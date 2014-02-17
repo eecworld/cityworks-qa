@@ -57,7 +57,7 @@ eecQaPlugin.setTestResults = function(testName, status, complete, total) {
   eecQaPlugin.updateTestView(testName);
 };
 
-eecQaPlugin.update = function(tests) {
+eecQaPlugin.update = function(tests) {  //TODO: Counts are not accurate for large numbers of thing?  Maybe there's an issue with loading order?
 
   if (typeof tests === 'string') { tests = [tests]; }
 
