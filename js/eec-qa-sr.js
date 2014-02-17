@@ -69,3 +69,4 @@ eecQaPlugin.tests = {  //TODO: Dynamically specify which tests in init params so
 };
 
 eecQaPlugin.recordId = eecQaPlugin.getControl('cboRequestId').val();
+eecQaPlugin.applyToAll = eecQaPlugin.getControl('chkApplyToAll').prop('checked');

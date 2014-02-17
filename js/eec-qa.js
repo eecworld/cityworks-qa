@@ -112,28 +112,36 @@ eecQaPlugin.init = function(params) {
 
   var build = function() {
 
-    for (var testName in eecQaPlugin.tests) {
-      if (eecQaPlugin.tests.hasOwnProperty(testName)) {
-        var test = eecQaPlugin.tests[testName];
-        $(eecQaPlugin.selector)
-          .append($('<div id="eec-qa-test-' + testName + '" class="row" />')
-            .append($('<label class="field label eec-qa-status" />')
-              .text(eecQaPlugin.getStatusLabel(test))
+    if (!eecQaPlugin.applyToAll) {
+      for (var testName in eecQaPlugin.tests) {
+        if (eecQaPlugin.tests.hasOwnProperty(testName)) {
+          var test = eecQaPlugin.tests[testName];
+          $(eecQaPlugin.selector)
+            .append($('<div id="eec-qa-test-' + testName + '" class="row" />')
+              .append($('<label class="field label eec-qa-status" />')
+                .text(eecQaPlugin.getStatusLabel(test))
+              )
+              .append($('<div class="field eec-qa-description" />')
+                .text(test.description)
+              )
             )
-            .append($('<div class="field eec-qa-description" />')
-              .text(test.description)
-            )
-          )
-        ;
+          ;
+        }
       }
+      eecQaPlugin.update();
+    } else {
+      $(eecQaPlugin.selector)
+        .append($('<div id="eec-qa-na-' + testName + '" class="row" />')
+          .text(eecQaPlugin.applyToAllMessage)
+        )
+      ;
     }
-
-    eecQaPlugin.update(); //TODO: Add others as they're finished.
   };
 
   eecQaPlugin.application = params['application'];
   eecQaPlugin.credentials = params['credentials'];
   eecQaPlugin.selector = params['selector'];
+  eecQaPlugin.applyToAllMessage = params['applyToAllMessage'];
 
   if (eecQaPlugin.credentials) {
     authenticate(build);
