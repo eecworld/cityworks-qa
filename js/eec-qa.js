@@ -138,6 +138,10 @@ eecQaPlugin.init = function(params) {
     }
   };
 
+  //TODO: Add handlers to status dropdown.  Figure out some sort of preventing change (probably by resetting)
+
+  //TODO: Figure out some way to have the user STAMP (see TODO.md) the record as OK to COMPLETE even though it's not filled out entirely (probably just in comments)
+
   eecQaPlugin.application = params['application'];
   eecQaPlugin.credentials = params['credentials'];
   eecQaPlugin.selector = params['selector'];
