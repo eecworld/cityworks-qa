@@ -172,7 +172,7 @@ eecQaPlugin.init = function(params) {
           message += '\n\nIf this is intentional, click OK to sign off on this and mark this as COMPLETE anyway.';
           var response = confirm(message);
           if (response == true) {
-            logStatusChange(eecQaPlugin.statusCtl.val());
+            logStatusChange(eecQaPlugin.statusCtl.val(), fails);
           } else {
             eecQaPlugin.statusCtl.val(eecQaPlugin.previousStatus);
           }
