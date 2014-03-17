@@ -9,6 +9,9 @@ label.eec-qa-status {
 label.eec-qa-status-fail {
   background-color: lightcoral;
 }
+label.eec-qa-status-na {
+  background-color: lightsteelblue;
+}
 label.eec-qa-status-pass {
   background-color: lightgreen;
 }
