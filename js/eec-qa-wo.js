@@ -58,7 +58,7 @@ eecQaPlugin.tests = {  //TODO: Dynamically specify which tests in init params so
   inspections: {
     description: 'Inspections Complete',
     update: function() {
-      var inspIdEls = eecQaPlugin.getControl('grdInspections').find('.rgRow td:eq(1) a, .rgAltRow td:eq(1) a');
+      var inspIdEls = eecQaPlugin.getControl('grdInspections').find('.rgRow td a, .rgAltRow td a');
       var inspIds = [];
       inspIdEls.each(function() {
         inspIds.push(Number($(this).text()));
