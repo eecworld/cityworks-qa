@@ -138,8 +138,7 @@ eecQaPlugin.init = function(params) {
     }
   };
 
-  //TODO: Move this function outside of init?
-  var control = function() {  //TODO: Add list of statuses to prevent as an argument?
+  var control = function() {
     $(eecQaPlugin.statusCtl).focus(function() {
       eecQaPlugin.previousStatus = this.value;
     }).change(function() {
@@ -186,6 +185,7 @@ eecQaPlugin.init = function(params) {
   eecQaPlugin.applyToAllMessage = params['applyToAllMessage'];
   eecQaPlugin.statuses = params['statuses'];
 
+  //Start it up!  Easy as (A)BC...
   if (eecQaPlugin.credentials) {
     authenticate(build);
   } else {

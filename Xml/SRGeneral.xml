@@ -35,7 +35,8 @@
               var qaParams = {
                 application: "/cityworks_demo",  // Replace this with the path to your Cityworks instance (with no trailing "/" or "Default.aspx")
                 selector: "#eec-qa-tests",  // Replace this with a selector to the DOM location where the tests should be injected.
-                applyToAllMessage: 'Disabled when "Apply to All" is checked.  Please check you data entry carefully.'  //Replace with a message to display when the "Apply to All" checkbox is checked.
+                applyToAllMessage: 'Disabled when "Apply to All" is checked.  Please check you data entry carefully.',  //Replace with a message to display when the "Apply to All" checkbox is checked.
+                statuses: ['COMPLETE']  //Replace with an array of status changes that should be prevented if not all QA tests have passed.
               };
               eecQaPlugin.init(qaParams);
             </script>
