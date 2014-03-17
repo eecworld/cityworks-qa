@@ -144,10 +144,10 @@ eecQaPlugin.init = function(params) {
       debugger;
       eecQaPlugin.previousStatus = this.value;
     }).change(function() {
-      if (this.value == 'COMPLETE') {  //TODO: Un-hardcode?
-        var logMarkedComplete = function() {  //TODO: No error handling
+      if (eecQaPlugin.statuses.indexOf(this.value) > -1) {
+        var logStatusChange = function(status) {  //TODO: No error handling
           var d = new Date();
-          eecQaPlugin.addComments('Marked COMPLETE by ' + eecQaPlugin.getUserName() + ' on ' + d.toString());
+          eecQaPlugin.addComments('Marked ' + status + ' by ' + eecQaPlugin.getUserName() + ' on ' + d.toString());
         };
         var fails = [];
         for (var test in eecQaPlugin.tests) {
@@ -170,12 +170,12 @@ eecQaPlugin.init = function(params) {
           message += '\nIf this is intentional, click OK to sign off on this and mark this as COMPLETE anyway.';
           var response = confirm(message);
           if (response == true) {
-            logMarkedComplete();
+            logStatusChange(eecQaPlugin.statusCtl.val());
           } else {
-            eecQaPlugin.statusCtl.value = eecQaPlugin.previousStatus;
+            eecQaPlugin.statusCtl.val(eecQaPlugin.previousStatus);
           }
         } else {
-          logMarkedComplete();
+          logStatusChange(eecQaPlugin.statusCtl.val());
         }
       }
     });
@@ -185,6 +185,7 @@ eecQaPlugin.init = function(params) {
   eecQaPlugin.credentials = params['credentials'];
   eecQaPlugin.selector = params['selector'];
   eecQaPlugin.applyToAllMessage = params['applyToAllMessage'];
+  eecQaPlugin.statuses = params['statuses'];
 
   if (eecQaPlugin.credentials) {
     authenticate(build);
