@@ -71,6 +71,7 @@ eecQaPlugin.tests = {  //TODO: Dynamically specify which tests in init params so
         eecQaPlugin.setTestResults('inspections', 'pass', 0, 0);
       } else {
         eecQaPlugin.callApi('Inspection', 'ByIds', {InspectionIds: inspIds}, function(data) {
+          debugger;
           var status = '';
           var complete = 0;
           var total = data.length;
