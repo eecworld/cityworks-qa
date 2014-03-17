@@ -68,10 +68,9 @@ eecQaPlugin.tests = {  //TODO: Dynamically specify which tests in init params so
         inspIds.push(Number($(this).text()));
       });
       if (inspIds.length == 0) {
-        eecQaPlugin.setTestResults('inspections', 'pass', 0, 0);
+        eecQaPlugin.setTestResults('inspections', 'na', 0, 0);
       } else {
         eecQaPlugin.callApi('Inspection', 'ByIds', {InspectionIds: inspIds}, function(data) {
-          debugger;
           var status = '';
           var complete = 0;
           var total = data.length;
@@ -80,11 +79,7 @@ eecQaPlugin.tests = {  //TODO: Dynamically specify which tests in init params so
             if (insp['IsClosed']) { complete++; }
           }
           if (complete == total) {
-            if (total > 0) {
-              status = 'pass';
-            } else {
-              status = 'na';
-            }
+            status = 'pass';
           } else {
             status = 'fail';
           }
