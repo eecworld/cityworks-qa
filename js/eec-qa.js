@@ -26,7 +26,7 @@ eecQaPlugin.getStatusLabel = function(test) {
     if (test.status == 'pass') {
       label = '\u2611';  //ballot box with check
     } else if (test.status == 'na') {
-      label = 'N/A';
+      label = 'NA';
     } else {
       label = '\u2610';  //blank ballot box
     }
