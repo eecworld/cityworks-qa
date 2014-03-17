@@ -143,9 +143,13 @@ eecQaPlugin.init = function(params) {
       eecQaPlugin.previousStatus = this.value;
     }).change(function() {
       if (eecQaPlugin.statuses.indexOf(this.value) > -1) {
-        var logStatusChange = function(status) {  //TODO: No error handling
+        var logStatusChange = function(status, fails) {  //TODO: No error handling
           var d = new Date();
-          eecQaPlugin.addComments('Marked ' + status + ' by ' + eecQaPlugin.getUserName() + ' on ' + d.toString());
+          var comment = 'Marked ' + status + ' by ' + eecQaPlugin.getUserName() + ' on ' + d.toString();
+          if (fails != null) {
+            comment += (' with incomplete QA items: ' + fails.join(', '));
+          }
+          eecQaPlugin.addComments(comment);
         };
         var fails = [];
         for (var test in eecQaPlugin.tests) {
@@ -173,7 +177,7 @@ eecQaPlugin.init = function(params) {
             eecQaPlugin.statusCtl.val(eecQaPlugin.previousStatus);
           }
         } else {
-          logStatusChange(eecQaPlugin.statusCtl.val());
+          logStatusChange(eecQaPlugin.statusCtl.val(), null);
         }
       }
     });
