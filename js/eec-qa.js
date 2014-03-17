@@ -138,9 +138,47 @@ eecQaPlugin.init = function(params) {
     }
   };
 
-  //TODO: Add handlers to status dropdown.  Figure out some sort of preventing change (probably by resetting)
-
-  //TODO: Figure out some way to have the user STAMP (see TODO.md) the record as OK to COMPLETE even though it's not filled out entirely (probably just in comments)
+  //TODO: Move this function outside of init?
+  var control = function() {  //TODO: Add list of statuses to prevent as an argument?
+    $(eecQaPlugin.statusCtl).focus(function() {
+      eecQaPlugin.previousStatus = this.value;
+    }).change(function() {
+      if (this.value == 'COMPLETE') {  //TODO: Un-hardcode?
+        var logMarkedComplete = function() {  //TODO: No error handling
+          var d = new Date();
+          eecQaPlugin.addComments('Marked COMPLETE by ' + eecQaPlugin.getUserName() + ' on ' + d.toString());
+        };
+        var fails = [];
+        for (var test in eecQaPlugin.tests) {
+          if (eecQaPlugin.tests.hasOwnProperty(test)) {
+            if (eecQaPlugin.tests[test].status == 'fail') {
+              fails.push(eecQaPlugin.tests[test]);
+            }
+          }
+        }
+        if (fails.length > 0) {
+          var message = 'The following quality assurance tests have not been passed:';
+          for (var i=0; i<fails.length; i++) {
+            message += '\n' + fails[i].description + ': ';
+            if (fails[i].hasOwnProperty('complete') && fails[i].hasOwnProperty('total')) {
+              message += fails[i].complete + '/' + fails[i].total;
+            } else {
+              message += 'None';
+            }
+          }
+          message += '\nIf this is intentional, click OK to sign off on this and mark this as COMPLETE anyway.';
+          var response = confirm(message);
+          if (response == true) {
+            logMarkedComplete();
+          } else {
+            eecQaPlugin.statusCtl.value = eecQaPlugin.previousStatus;
+          }
+        } else {
+          logMarkedComplete();
+        }
+      }
+    });
+  };
 
   eecQaPlugin.application = params['application'];
   eecQaPlugin.credentials = params['credentials'];

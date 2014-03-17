@@ -2,6 +2,37 @@ eecQaPlugin.getControl = function(controlId) {
   return $('#' + cw.LayoutManagers.WOGeneral.Controls.get(controlId));
 };
 
+eecQaPlugin.getUserName = function() {  //TODO: Add to eec-qa-sr as well
+
+  function method1() {
+    //Method 1: Parse the cancel check click handler (the only place in the WO page where the user's name is written
+    var cancelFunctionText = eecQaPlugin.getControl('chkCancel').prop('onclick').toString().split(',');
+    var nameText = cancelFunctionText[3] + ', ' + cancelFunctionText[4];
+    return nameText.substring(1, nameText.length-1);
+  }
+
+  function method2() {
+    //Method 2: Get from the application menu (not possible when WO is open in a separate tab)
+    return $('.user-menu .details .name', top.document).text();
+  }
+
+  var username;
+  try {
+    username = method1();
+  } catch(e) {
+    //Do nothing
+  }
+  if (username == undefined || username == null || username.length == 0) {
+    username = method2();
+  }
+  return username;
+
+};
+
+eecQaPlugin.addComments = function(comments, callback) {
+  eecQaPlugin.callApi('WorkOrder', 'AddComments', {'WorkOrderId': eecQaPlugin.recordId, 'Comments': comments}, callback);
+};
+
 eecQaPlugin.tests = {  //TODO: Dynamically specify which tests in init params so they can be assigned per user group through XML?
   tasks: {
     description: 'Tasks Complete',
@@ -139,4 +170,4 @@ eecQaPlugin.tests = {  //TODO: Dynamically specify which tests in init params so
 
 eecQaPlugin.recordId = eecQaPlugin.getControl('cboWorkOrderId').val();
 eecQaPlugin.applyToAll = eecQaPlugin.getControl('chkApplyToAll').prop('checked');
-eecQaPlugin.getStatus = eecQaPlugin.getControl('cboStatus').val();
+eecQaPlugin.statusCtl = eecQaPlugin.getControl('cboStatus');
