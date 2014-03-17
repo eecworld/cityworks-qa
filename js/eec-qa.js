@@ -147,7 +147,14 @@ eecQaPlugin.init = function(params) {
           var d = new Date();
           var comment = 'Marked ' + status + ' by ' + eecQaPlugin.getUserName() + ' on ' + d.toString();
           if (fails != null) {
-            comment += (' with incomplete QA items: ' + fails.join(', '));
+            var failText = '';
+            for (var i=0; i<fails.length; i++) {
+              if (failText.length > 0) {
+                failText += ', ';
+              }
+              failText += fails[i].description;
+            }
+            comment += (' with incomplete QA items: ' + failText);
           }
           eecQaPlugin.addComments(comment);
         };
