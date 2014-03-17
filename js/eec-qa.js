@@ -157,16 +157,16 @@ eecQaPlugin.init = function(params) {
           }
         }
         if (fails.length > 0) {
-          var message = 'The following quality assurance tests have not been passed:';
+          var message = 'The following quality assurance tests have not been passed:\n';
           for (var i=0; i<fails.length; i++) {
-            message += '\n' + fails[i].description + ': ';
+            message += '\n - ' + fails[i].description + ': ';
             if (fails[i].hasOwnProperty('complete') && fails[i].hasOwnProperty('total')) {
               message += fails[i].complete + '/' + fails[i].total;
             } else {
               message += 'None';
             }
           }
-          message += '\nIf this is intentional, click OK to sign off on this and mark this as COMPLETE anyway.';
+          message += '\n\nIf this is intentional, click OK to sign off on this and mark this as COMPLETE anyway.';
           var response = confirm(message);
           if (response == true) {
             logStatusChange(eecQaPlugin.statusCtl.val());
