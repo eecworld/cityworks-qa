@@ -190,5 +190,6 @@ eecQaPlugin.init = function(params) {
   } else {
     build();
   }
+  control();
 
 };
