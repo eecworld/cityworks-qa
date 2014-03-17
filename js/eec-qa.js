@@ -25,6 +25,8 @@ eecQaPlugin.getStatusLabel = function(test) {
   } else {
     if (test.status == 'pass') {
       label = '\u2611';  //ballot box with check
+    } else if (test.status == 'na') {
+      label = 'N/A';
     } else {
       label = '\u2610';  //blank ballot box
     }
@@ -40,11 +42,18 @@ eecQaPlugin.updateTestView = function(testName) {
     statusView
       .addClass('eec-qa-status-pass')
       .removeClass('eec-qa-status-fail')
+      .removeClass('eec-qa-status-na')
     ;
+  } else if (test.status == 'na') {
+    statusView
+      .addClass('eec-qa-status-na')
+      .removeClass('eec-qa-status-pass')
+      .removeClass('eec-qa-status-fail')
   } else {
     statusView
       .addClass('eec-qa-status-fail')
       .removeClass('eec-qa-status-pass')
+      .removeClass('eec-qa-status-na')
     ;
   }
 };

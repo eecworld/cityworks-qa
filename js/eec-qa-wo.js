@@ -47,7 +47,11 @@ eecQaPlugin.tests = {  //TODO: Dynamically specify which tests in init params so
           if (task['Status'] == 'COMPLETE') { complete++; }
         }
         if (complete == total) {
-          status = 'pass';
+          if (total > 0) {
+            status = 'pass';
+          } else {
+            status = 'na';
+          }
         } else {
           status = 'fail';
         }
@@ -75,7 +79,11 @@ eecQaPlugin.tests = {  //TODO: Dynamically specify which tests in init params so
             if (insp['IsClosed']) { complete++; }
           }
           if (complete == total) {
-            status = 'pass';
+            if (total > 0) {
+              status = 'pass';
+            } else {
+              status = 'na';
+            }
           } else {
             status = 'fail';
           }
@@ -97,7 +105,11 @@ eecQaPlugin.tests = {  //TODO: Dynamically specify which tests in init params so
         if (content != '') { complete++; } //TODO: Don't include date placeholder MM/DD/YYYY
       });
       if (complete == total) {
-        status = 'pass';
+        if (total > 0) {
+          status = 'pass';
+        } else {
+          status = 'na';
+        }
       } else {
         status = 'fail';
       }
