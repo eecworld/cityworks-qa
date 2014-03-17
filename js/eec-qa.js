@@ -141,6 +141,7 @@ eecQaPlugin.init = function(params) {
   //TODO: Move this function outside of init?
   var control = function() {  //TODO: Add list of statuses to prevent as an argument?
     $(eecQaPlugin.statusCtl).focus(function() {
+      debugger;
       eecQaPlugin.previousStatus = this.value;
     }).change(function() {
       if (this.value == 'COMPLETE') {  //TODO: Un-hardcode?
