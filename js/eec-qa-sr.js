@@ -37,13 +37,13 @@ eecQaPlugin.tests = {  //TODO: Dynamically specify which tests in init params so
   inspections: {
     description: 'Inspections Complete',
     update: function() {
-      var inspIdEls = eecQaPlugin.getControl('grdInspections').find('.rgRow td:eq(1) a, .rgAltRow td:eq(1) a');
+      var inspIdEls = eecQaPlugin.getControl('grdInspections').find('.rgRow td a, .rgAltRow td a');
       var inspIds = [];
       inspIdEls.each(function() {
         inspIds.push(Number($(this).text()));
       });
       if (inspIds.length == 0) {
-        eecQaPlugin.setTestResults('inspections', 'pass', 0, 0);
+        eecQaPlugin.setTestResults('inspections', 'na', 0, 0);
       } else {
         eecQaPlugin.callApi('Inspection', 'ByIds', {InspectionIds: inspIds}, function(data) {
           var status = '';
@@ -76,7 +76,11 @@ eecQaPlugin.tests = {  //TODO: Dynamically specify which tests in init params so
         if (content != '') { complete++; } //TODO: Don't include date placeholder MM/DD/YYYY
       });
       if (complete == total) {
-        status = 'pass';
+        if (total > 0) {
+          status = 'pass';
+        } else {
+          status = 'na';
+        }
       } else {
         status = 'fail';
       }
