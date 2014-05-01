@@ -29,7 +29,7 @@ eecQaPlugin.getControl = function(controlId) {
  *   Method 1: Parses the user's name out of the "onClick" handler of the "Cancel Work Order" checkbox.  SUPER hacky!
  *     Could very well break on upgrade.
  *   Method 2: Pulls the user's name from the upper-right application ("hamburger") menu.  Pretty sensible (and more
- *     likely upgrade-proff, but it has to cross iframes and isn't available when the user has the work order open in a
+ *     likely upgrade-proof, but it has to cross iframes and isn't available when the user has the work order open in a
  *     separate tab.
  *
  * @returns {String} The current user's full name (Last, First)
@@ -45,7 +45,7 @@ eecQaPlugin.getUserName = function() {
 
   function method2() {
     //Method 2: Get from the application menu (not possible when WO is open in a separate tab)
-    return $('.user-menu .details .name', top.document).text();
+    return $('.user-menu .details .name', top.document).text();  //Selector is run in parent frame
   }
 
   var username;
@@ -69,7 +69,8 @@ eecQaPlugin.getUserName = function() {
  * the Cityworks API, so the current (or authenticated) user's name and the current date and time will be automatically
  * added by the API to whatever is passed by this function.
  *
- * Currently used for stamping override details when the user chooses to mark a work order "COMPLETE" even though all the tests have not yet passed.
+ * Currently used for stamping override details when the user chooses to mark a work order "COMPLETE" even though all
+ * the tests have not yet passed.
  *
  * @param {String} comments The comments to be added
  * @param {Function} callback A callback function to be run when the comments have successfully been added
@@ -97,7 +98,7 @@ eecQaPlugin.addComments = function(comments, callback) {
  * @example
  * eecQaPlugin.tests = {          //This is the existing main tests object (dictionary)
  *   ...                          //Existing tests are defined here
- *   },                           //This is the end of last test.  Remember to add a comma!
+ *   },                           //This is the end of last test.  Remember to ADD A COMMA!
  *                                //-----BEGINNING OF YOUR NEW TEST-----
  *   testName: {                  //Replace "testName" with a "Computer-friendly" name/ID of the test (e.g. tasks)
  *     description: 'Test Name',  //Replace "Test Name" with a "Human-friendly" name of the test (e.g. 'Tasks
@@ -109,13 +110,13 @@ eecQaPlugin.addComments = function(comments, callback) {
  *       //Once the test has determined the results, it needs to call the setTestResults function to report the results
  *       //and update the user interface.  Note that you might need to run this function from a callback function if the
  *       //test is run asynchronously (as is the case with all tests that use the eecQaPlugin.callApi function).
- *     }
+ *     }                          //-----END OF YOUR NEW TEST-----
  *   }
  * }
  */
 eecQaPlugin.tests = {
   /**
-   * @var tests.tasks
+   * @var {Object} tests.tasks
    * @description Tests whether all tasks have been marked complete.  If no tasks exist, is set to "NA"
    */
   tasks: {
@@ -143,7 +144,7 @@ eecQaPlugin.tests = {
     }
   },
   /**
-   * @var tests.inspections
+   * @var {Object} tests.inspections
    * @description
    * Tests whether all related inspections have been closed.  If there are no related inspections, is set to "NA"
    */
@@ -177,7 +178,7 @@ eecQaPlugin.tests = {
     }
   },
   /**
-   * @var tests.requiredFields
+   * @var {Object} tests.requiredFields
    * @description
    * Tests whether all required fields (standard and custom) have been filled out.  Scrapes the screen for CSS classes
    * to determine which fields are required.
@@ -206,7 +207,7 @@ eecQaPlugin.tests = {
     }
   },
   /**
-   * @var tests.asset
+   * @var {Object} tests.asset
    * @description Tests whether the work order is associated to an asset
    */
   asset: {
@@ -230,7 +231,7 @@ eecQaPlugin.tests = {
     }
   },
   /**
-   * @var tests.labor
+   * @var {Object} tests.labor
    * @description Tests whether any labor has been added to the work order
    */
   labor: {
@@ -248,7 +249,7 @@ eecQaPlugin.tests = {
     }
   },
   /**
-   * @var tests.equipment
+   * @var {Object} tests.equipment
    * @description Tests whether any equipment has been added to the work order
    */
   equipment: {
@@ -266,7 +267,7 @@ eecQaPlugin.tests = {
     }
   },
   /**
-   * @var tests.materials
+   * @var {Object} tests.materials
    * @description Tests whether any materials have been added to the work order
    */
   materials: {
@@ -286,6 +287,6 @@ eecQaPlugin.tests = {
 };
 
 //Initialize some settings by reading the work order screen
-eecQaPlugin.recordId = eecQaPlugin.getControl('cboWorkOrderId').val();  //Makes the work order Id available to all tests
+eecQaPlugin.recordId = eecQaPlugin.getControl('cboWorkOrderId').val();  //Makes the work order ID available to all tests
 eecQaPlugin.applyToAll = eecQaPlugin.getControl('chkApplyToAll').prop('checked');
 eecQaPlugin.statusCtl = eecQaPlugin.getControl('cboStatus');
