@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <webLayout xmlns="http://www.azteca.com/cityworks/layout/webLayout">
-  <controls>
-  </controls>
+  <controls></controls>
   <layout>
 
     <!-- THE panel, panelTitle, row, AND label ELEMENTS CAN BE MOVED OR MODIFIED IF DESIRED TO CHANGE WHERE THE TOOL APPEARS ON THE PAGE -->
@@ -46,6 +45,5 @@
     </panel>
 
   </layout>
-  <messages>
-  </messages>
+  <messages></messages>
 </webLayout>
