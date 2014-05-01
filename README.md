@@ -2,7 +2,7 @@
 
 ## Installation
 
-Copy the entire contents of this project to a web-accessible location on the host server where Cityworks is intalled.
+Copy the entire contents of this project to a web-accessible location on the host server where Cityworks is installed.
 If git is installed on the destination machine, the following command can be used to deploy the project with git:
 
     git clone https://watchstevedrum@bitbucket.org/watchstevedrum/sacdou-cityworks-qa-plugin.git
@@ -30,7 +30,7 @@ If you are using the tool outside of a Cityworks session, you'll need to create 
 It should be an employee, in at least one group (probably only one group, like a system group or something), and be authorized and registered on Cityworks Server with a password.
 It doesn't need to be part of any server groups, have any inbox or XML configuration, employee relates, or anything like that.
 
-If you are using the tool inside a Cityworks sesion (i.e. the URL says "/cityworks/Default.aspx" or something similar), you don't need to specify a proxy user.
+If you are using the tool inside a Cityworks session (i.e. the URL says "/cityworks/Default.aspx" or something similar), you don't need to specify a proxy user.
 The current user's credentials will be used to authenticate all calls made by this tool.
 
 ## A Note on CustomFields.xml
@@ -38,7 +38,7 @@ The current user's credentials will be used to authenticate all calls made by th
 This is a note explaining why the code stub in CustomFields.xml is necessary.
 If you simply deploy what's in CustomFields.xml file, you don't need to worry about this; this is merely a technical explanation as to why that code exists.
 
-Because the custom fields .xml configuration is outside the scope of either the work order or service request .xml configuration, it gets loaded after the QA plugin that's loadedin each of those pages.
+Because the custom fields .xml configuration is outside the scope of either the work order or service request .xml configuration, it gets loaded after the QA plugin that's loaded in each of those pages.
 As a result, required custom fields are ignored since they don't exist at the time the QA plugin is initialized.
 To remedy this, the following code should be run in a location in the .xml after the custom fields have been loaded:
 
