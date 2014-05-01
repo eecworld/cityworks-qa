@@ -2,7 +2,9 @@
  * @module eecQaPlugin
  * @description
  * Adds a "Quality Assurance" pane to Cityworks to run common checks at data entry time against the data entered in
- * work orders and service requests.
+ * work orders and service requests.  This module includes the code shared by both work orders and service requests.
+ * Functionality specific to work orders and service requests individually is defined in their corresponding modules,
+ * {@link module:eecQaPlugin/wo} and {@link module:eecQaPlugin/sr}
  *
  * @requires jQuery (included with Cityworks)
  */
@@ -117,8 +119,8 @@ eecQaPlugin.updateTestView = function(testName) {
  *
  * @param {String} testName The name of the test for which to update the results
  * @param {String} status The current status of the test ('pass', 'fail', 'na')
- * @param {Number} complete The number of test objects that are complete (if applicable)
- * @param {Number} total The number of total test objects (if applicable)
+ * @param {Number} [complete] The number of test objects that are complete (if applicable)
+ * @param {Number} [total] The number of total test objects (if applicable)
  *
  * @example
  * // Sets the results of the "Related Inspections Completed" test to "3/5" (not complete)
