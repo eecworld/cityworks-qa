@@ -158,7 +158,7 @@ eecQaPlugin.tests = {
   requiredFields: {
     description: 'Required Fields Filled In',
     update: function() {
-      //TODO: What about required fields on other pages (i.e. arrived on site)?
+      //TODO: Doesn't recognize required fields on other pages (i.e. arrived on site)
       var fieldEls = $('[class*=Required]').next().find('input[type=text], select')
       var status = '';
       var complete = 0;

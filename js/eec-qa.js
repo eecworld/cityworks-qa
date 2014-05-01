@@ -45,7 +45,7 @@ eecQaPlugin.callApi = function(service, method, parameters, callback) {
       alert('Error calling Cityworks API.  ' + response['Message']);
       if (typeof callback === 'function') { callback(); }
     } else if (response['Status'] == 2) {
-      //TODO: Re-Authenticate?  Throw unauthorized error?  Does this happen when they just don't have permissions too?
+      //Do nothing  //TODO: Could potentially re-authenticate automatically
     }
   });
 };
@@ -241,12 +241,11 @@ eecQaPlugin.init = function(params) {
     };
 
     var tokenSave = localStorage.getItem('eec-qa-token');
-    if (tokenSave == null) { //TODO: Need better error handling than this.  Basically, if anything goes not perfect,
-                             // then re-auth with the server (i.e. don't assume the localStorage value isn't messed up)
+    if (tokenSave == null) { //TODO: Better error handling.  Ideally, if anything is not PERFECT, then re-auth with the server (i.e. don't assume the localStorage value isn't messed up)
       authWithServer(callback);
     } else {
-      var token = JSON.parse(tokenSave);  //TODO: Check token with Authentication/Validate service
-      if (token['Expires'] < new Date()) {  //TODO: Timezone check
+      var token = JSON.parse(tokenSave);  //TODO: Check token validity with Authentication/Validate service
+      if (token['Expires'] < new Date()) {  //TODO: Doesn't take time zones into account
         authWithServer(callback);
       } else {
         eecQaPlugin.token = token;
@@ -301,7 +300,7 @@ eecQaPlugin.init = function(params) {
       eecQaPlugin.previousStatus = this.value;
     }).change(function() {
       if (eecQaPlugin.statuses.indexOf(this.value) > -1) {
-        var logStatusChange = function(status, fails) {  //TODO: No error handling
+        var logStatusChange = function(status, fails) {  //TODO: Add error handling
           var d = new Date();
           var comment = 'Marked ' + status + ' by ' + eecQaPlugin.getUserName() + ' on ' + d.toString();
           if (fails != null) {
