@@ -3,6 +3,8 @@
  * @description
  * Adds a "Quality Assurance" pane to Cityworks to run common checks at data entry time against the data entered in
  * work orders and service requests.
+ *
+ * @requires jQuery (included with Cityworks)
  */
 var eecQaPlugin = {};
 
@@ -264,11 +266,11 @@ eecQaPlugin.init = function(params) {
         if (eecQaPlugin.tests.hasOwnProperty(testName)) {
           var test = eecQaPlugin.tests[testName];
           $(eecQaPlugin.selector)
-            .append($('<div id="eec-qa-test-' + testName + '" class="row" />')
-              .append($('<label class="field label eec-qa-status" />')
+            .append($('<div id="eec-qa-test-' + testName + '" class="row"></div>')
+              .append($('<label class="field label eec-qa-status"></label>')
                 .text(eecQaPlugin.getStatusLabel(test))
               )
-              .append($('<div class="field eec-qa-description" />')
+              .append($('<div class="field eec-qa-description"></div>')
                 .text(test.description)
               )
             )
@@ -278,7 +280,7 @@ eecQaPlugin.init = function(params) {
       eecQaPlugin.update();
     } else {
       $(eecQaPlugin.selector)
-        .append($('<div id="eec-qa-na-' + testName + '" class="row" />')
+        .append($('<div id="eec-qa-na" class="row"></div>')
           .text(eecQaPlugin.applyToAllMessage)
         )
       ;
