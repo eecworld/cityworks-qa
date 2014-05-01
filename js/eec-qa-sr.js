@@ -165,7 +165,7 @@ eecQaPlugin.tests = {
       var total = fieldEls.length;
       fieldEls.each(function() {
         var content = $(this).val();
-        if (content != '') { complete++; } //TODO: Don't include date placeholder MM/DD/YYYY
+        if (content != '' && content != 'MM/DD/YYYY') { complete++; }
       });
       if (complete == total) {
         if (total > 0) {
