@@ -6,6 +6,9 @@ Ensuring quality data entry is key to any Cityworks deployment.
 But if data isn't validated when it's entered (especially from the field), problems are often found too late to fix.
 These tools allow Cityworks administrators to add extra checks and controls to the forms in Cityworks to ensure that users are entering high quality data.
 
+These tools were originally developed by [EEC](http://www.eecworld.com) for the [City of Sacramento's Department of Utilities](http://portal.cityofsacramento.org/Utilities) Cityworks installation.
+If you have any issues, feel free to contact EEC.  The City loves you too, but they're busy running a whole city and EEC has resources dedicated to support this so you're much better off bugging EEC.
+
 ## Setup
 
 The following instructions should hopefully help you to get the QA plugin up and running.
