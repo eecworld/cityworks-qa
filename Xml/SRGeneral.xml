@@ -25,9 +25,9 @@
         <label id="eec-qa-code" type="plain">
           <text><![CDATA[
             <!-- CHANGE THE PATHS AFTER href AND src TO THE LOCATION OF THE CSS FILE FOR THIS TOOL -->
-            <link rel="stylesheet" type="text/css" href="/sacdou-cityworks-qa-plugin/css/eec-qa.css" />
-            <script src="/sacdou-cityworks-qa-plugin/js/eec-qa.js"></script>
-            <script src="/sacdou-cityworks-qa-plugin/js/eec-qa-sr.js"></script>
+            <link rel="stylesheet" type="text/css" href="/cityworks-qa/css/eec-qa.css" />
+            <script src="/cityworks-qa/js/eec-qa.js"></script>
+            <script src="/cityworks-qa/js/eec-qa-sr.js"></script>
 
             <!-- CHANGE THE TOOL'S PARAMETERS BELOW AS INDICATED IN THE COMMENTS -->
             <script type="text/javascript">
