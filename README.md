@@ -2,6 +2,8 @@
 
 Quality assurance tools for [Cityworks Server](http://www.cityworks.com/) that validate data entry when it happens
 
+![Screenshot: Work Order with QA Plugin](doc/cw-qa-wo-screenshot.png)
+
 Ensuring quality data entry is key to any Cityworks deployment.
 But if data isn't validated when it's entered (especially from the field), problems are often found too late to fix.
 These tools allow Cityworks administrators to add extra checks and controls to the forms in Cityworks to ensure that users are entering high quality data.
