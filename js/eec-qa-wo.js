@@ -215,6 +215,7 @@ eecQaPlugin.tests = {
     update: function() {
       eecQaPlugin.callApi('WorkOrder', 'Entities', {WorkOrderIds: [eecQaPlugin.recordId]}, function(data) {
         var status = '';
+        var complete = 0;
         if (data.length == 0) {
           status = 'fail';
         } else if (data.length == 1) {
@@ -222,11 +223,13 @@ eecQaPlugin.tests = {
             status = 'fail';
           } else {
             status = 'pass';
+            complete = 1;
           }
         } else {
           status = 'pass';
+          complete = data.length;
         }
-        eecQaPlugin.setTestResults('asset', status);
+        eecQaPlugin.setTestResults('asset', status, complete);
       });
     }
   },

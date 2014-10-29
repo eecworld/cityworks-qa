@@ -63,6 +63,8 @@ eecQaPlugin.getStatusLabel = function(test) {
   var label;
   if (test.total > 0) {
     label = test.complete + ' / ' + test.total;
+  } else if (test.complete > 0) {
+    label = test.complete;
   } else {
     if (test.status == 'pass') {
       label = '\u2611';  //ballot box with check
