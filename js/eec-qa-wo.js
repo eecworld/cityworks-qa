@@ -211,7 +211,7 @@ eecQaPlugin.tests = {
    * @description Tests whether the work order is associated to an asset
    */
   asset: {
-    description: 'Attached to an Asset',
+    description: 'Attached to Asset(s)',
     update: function() {
       eecQaPlugin.callApi('WorkOrder', 'Entities', {WorkOrderIds: [eecQaPlugin.recordId]}, function(data) {
         var status = '';
