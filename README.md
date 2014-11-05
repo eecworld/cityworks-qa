@@ -68,7 +68,7 @@ This will happen so fast that the initial count (which didn't take custom fields
 
 ## Compatibility
 
-This tool has been tested to work with the following version of Cityworks Server:
+This tool has been tested to work with the following versions of Cityworks Server:
 
  * Cityworks Server 2013 (SP2 and SP4)
  * Cityworks Server 2013 SP4
