@@ -264,6 +264,12 @@ eecQaPlugin.init = function(params) {
    */
   var build = function() {
 
+    for (var testName in eecQaPlugin.tests) {
+      if (eecQaPlugin.testsToRun != 'all' && eecQaPlugin.testsToRun.indexOf(testName) < 0) {
+        delete eecQaPlugin.tests[testName];
+      }
+    }
+
     if (!eecQaPlugin.applyToAll) {
       for (var testName in eecQaPlugin.tests) {
         if (eecQaPlugin.tests.hasOwnProperty(testName)) {
@@ -355,6 +361,7 @@ eecQaPlugin.init = function(params) {
   eecQaPlugin.selector = params['selector'];
   eecQaPlugin.applyToAllMessage = params['applyToAllMessage'];
   eecQaPlugin.statuses = params['statuses'];
+  eecQaPlugin.testsToRun = params['tests'] ? params['tests'] : 'all';
 
   //Start it up!  Easy as [A]BC...
   if (eecQaPlugin.credentials) {  //Only authenticate if credentials were passed.
