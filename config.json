@@ -20,6 +20,9 @@
     {
       "scripts": ["js/eec-qa-sr.js"],
       "pages": ["requestedit"]
+    },
+    {
+      "scripts": ["js/init.js"]
     }
   ],
   "pages": [
