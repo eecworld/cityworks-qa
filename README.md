@@ -48,7 +48,7 @@ The main changes are made in the SCRIPTS INJECTION section.
 #### Option 2: EEC Cityworks Plugin Architecture
 
 This repository is a valid EEC Cityworks Plugin.
-If you are using the EEC Cityworks Plugin loader, you'll need to copy the tool to the "modules" directory and add "cityworks-qa" (or whatever the folder name is where you deploy it) to the list of modules in the config.json file.
+If you are using the EEC Cityworks Plugin loader, you'll need to copy the tool to the "modules" directory and add "cityworks-qa" (or whatever the folder name is where you deploy it) to the list of modules in your configuration.
 
 ### A Note on CustomFields.xml
 

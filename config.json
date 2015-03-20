@@ -14,12 +14,10 @@
       "styles": ["css/eec-qa.css"]
     },
     {
-      "id": "cityworks-qa-wo",
       "scripts": ["js/eec-qa-wo.js"],
       "pages": ["wogeneraledit"]
     },
     {
-      "id": "cityworks-qa-sr",
       "scripts": ["js/eec-qa-sr.js"],
       "pages": ["requestedit"]
     }
