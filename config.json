@@ -26,7 +26,6 @@
     "requestedit",
     "wogeneraledit"
   ],
-  "scripts": [
-    "js/init.js"
-  ]
+  "styles": ["badstyle"],
+  "scripts": ["js/init.js"]
 }
