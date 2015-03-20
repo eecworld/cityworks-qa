@@ -1,0 +1,34 @@
+{
+  "id": "cityworks-qa",
+  "name": "Cityworks QA Plugin",
+  "author" : "sshaffer@eecenvironmental.com",
+  "version": "1.1",
+  "options": {
+    "applyToAllMessage": "Disabled when \"Apply to All\" is checked.  Please check your data entry carefully.",
+    "statuses": ["COMPLETE"],
+    "tests": "all"
+  },
+  "dependencies": [
+    {
+      "scripts": ["js/eec-qa.js"],
+      "styles": ["css/eec-qa.css"]
+    },
+    {
+      "id": "cityworks-qa-wo",
+      "scripts": ["js/eec-qa-wo.js"],
+      "pages": ["wogeneraledit"]
+    },
+    {
+      "id": "cityworks-qa-sr",
+      "scripts": ["js/eec-qa-sr.js"],
+      "pages": ["requestedit"]
+    }
+  ],
+  "pages": [
+    "requestedit",
+    "wogeneraledit"
+  ],
+  "scripts": [
+    "js/init.js"
+  ]
+}

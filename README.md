@@ -1,5 +1,7 @@
 # Cityworks Quality Assurance Plugin
 
+Version 1.1
+
 Quality assurance tools for [Cityworks Server](http://www.cityworks.com/) that validate data entry when it happens
 
 ![Screenshot: Work Order with QA Plugin](doc/cw-qa-wo-screenshot.png)
@@ -34,7 +36,7 @@ If not, you'll need to re-map some of the parameters in the XML.
 The tool can be configured two ways: inside Cityworks and outside Cityworks.
 The latter doesn't make too much sense currently, so the former (inside) is the best way to deploy.
 
-#### Option 1: Inside Cityworks: Deploy / Edit XML Files (The "Normal" Way)
+#### Option 1: Deploy / Edit XML Files
 
 The tool can be injected and configured through Cityworks XML customization.  Example .xml files are included in the Xml directory in this project.
 If you don't already have any XML configuration, you can deploy this file directly into an XML folder per Cityworks instructions.
@@ -43,14 +45,10 @@ If you have existing Cityworks XML configurations for the WOGeneral, SRGeneral, 
 See the provided XML file for notes on where to make configuration changes.
 The main changes are made in the SCRIPTS INJECTION section.
 
-#### Option 2: Outside Cityworks: Create a Proxy User (Not Currently Supported or Implemented)
+#### Option 2: EEC Cityworks Plugin Architecture
 
-If you are using the tool outside of a Cityworks session, you'll need to create a user in Cityworks who has view permissions (but nothing else) to all things you'll need to test.
-It should be an employee, in at least one group (probably only one group, like a system group or something), and be authorized and registered on Cityworks Server with a password.
-It doesn't need to be part of any server groups, have any inbox or XML configuration, employee relates, or anything like that.
-
-If you are using the tool inside a Cityworks session (i.e. the URL says "/cityworks/Default.aspx" or something similar), you don't need to specify a proxy user.
-The current user's credentials will be used to authenticate all calls made by this tool.
+This repository is a valid EEC Cityworks Plugin.
+If you are using the EEC Cityworks Plugin loader, you'll need to copy the tool to the "modules" directory and add "cityworks-qa" (or whatever the folder name is where you deploy it) to the list of modules in the config.json file.
 
 ### A Note on CustomFields.xml
 
