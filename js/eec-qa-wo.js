@@ -211,7 +211,7 @@ eecQaPlugin.tests = {
    * @description Tests whether the work order is associated to an asset
    */
   asset: {
-    description: 'Attached to Asset(s)',
+    description: 'Asset(s) Attached',
     update: function() {
       eecQaPlugin.callApi('WorkOrder', 'Entities', {WorkOrderIds: [eecQaPlugin.recordId]}, function(data) {
         var status = '';
@@ -238,16 +238,20 @@ eecQaPlugin.tests = {
    * @description Tests whether any labor has been added to the work order
    */
   labor: {
-    description: 'Labor Entered',
+    description: 'Labor Hours Entered',
     update: function() {
       eecQaPlugin.callApi('LaborCost', 'WorkOrderCostsByWorkOrder', {WorkOrderIds: [eecQaPlugin.recordId]}, function(data) {
         var status = '';
+        var hours = 0;
         if (data.length > 0) {
           status = 'pass';
+          for (var i=0; i<data.length; i++) {
+            hours += data[i].Hours;
+          }
         } else {
           status = 'fail';
         }
-        eecQaPlugin.setTestResults('labor', status);
+        eecQaPlugin.setTestResults('labor', status, hours);
       });
     }
   },
@@ -256,34 +260,44 @@ eecQaPlugin.tests = {
    * @description Tests whether any equipment has been added to the work order
    */
   equipment: {
-    description: 'Equipment Entered',
+    description: 'Equipment Unit-Hours Entered',
     update: function() {
       eecQaPlugin.callApi('EquipmentCost', 'WorkOrderCostsByWorkOrder', {WorkOrderIds: [eecQaPlugin.recordId]}, function(data) {
         var status = '';
+        var unitHours = 0;
         if (data.length > 0) {
           status = 'pass';
+          for (var i=0; i<data.length; i++) {
+            unitHours += (data[i].UnitsRequired * data[i].HoursRequired);
+          }
         } else {
           status = 'fail';
         }
-        eecQaPlugin.setTestResults('equipment', status);
+        eecQaPlugin.setTestResults('equipment', status, unitHours);
       });
     }
   },
   /**
    * @var {Object} tests.materials
-   * @description Tests whether any materials have been added to the work order
+   * @description Tests whether any materials have been added to the work order.
+   * This is admittedly the weirdest "number completed" reporting because the materials used could have different units
+   * so summing them up is not the most intuitive thing.
    */
   materials: {
-    description: 'Materials Entered',
+    description: 'Material Units Entered',
     update: function() {
       eecQaPlugin.callApi('MaterialCost', 'WorkOrderCostsByWorkOrder', {WorkOrderIds: [eecQaPlugin.recordId]}, function(data) {
         var status = '';
+        var units = 0;
         if (data.length > 0) {
           status = 'pass';
+          for (var i=0; i<data.length; i++) {
+            units += data[i].UnitsRequired;
+          }
         } else {
           status = 'fail';
         }
-        eecQaPlugin.setTestResults('materials', status);
+        eecQaPlugin.setTestResults('materials', status, units);
       });
     }
   }
