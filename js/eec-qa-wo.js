@@ -242,12 +242,16 @@ eecQaPlugin.tests = {
     update: function() {
       eecQaPlugin.callApi('LaborCost', 'WorkOrderCostsByWorkOrder', {WorkOrderIds: [eecQaPlugin.recordId]}, function(data) {
         var status = '';
+        var hours = 0;
         if (data.length > 0) {
           status = 'pass';
+          for (var i=0; i<data.length; i++) {
+            hours += data[i].Hours;
+          }
         } else {
           status = 'fail';
         }
-        eecQaPlugin.setTestResults('labor', status);
+        eecQaPlugin.setTestResults('labor', status, hours);
       });
     }
   },
