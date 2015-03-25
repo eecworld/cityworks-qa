@@ -279,19 +279,25 @@ eecQaPlugin.tests = {
   },
   /**
    * @var {Object} tests.materials
-   * @description Tests whether any materials have been added to the work order
+   * @description Tests whether any materials have been added to the work order.
+   * This is admittedly the weirdest "number completed" reporting because the materials used could have different units
+   * so summing them up is not the most intuitive thing.
    */
   materials: {
-    description: 'Materials Entered',
+    description: 'Material Units Entered',
     update: function() {
       eecQaPlugin.callApi('MaterialCost', 'WorkOrderCostsByWorkOrder', {WorkOrderIds: [eecQaPlugin.recordId]}, function(data) {
         var status = '';
+        var units = 0;
         if (data.length > 0) {
           status = 'pass';
+          for (var i=0; i<data.length; i++) {
+            units += data[i].UnitsRequired;
+          }
         } else {
           status = 'fail';
         }
-        eecQaPlugin.setTestResults('materials', status);
+        eecQaPlugin.setTestResults('materials', status, units);
       });
     }
   }
