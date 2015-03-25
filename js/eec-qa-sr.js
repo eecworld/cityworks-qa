@@ -184,7 +184,7 @@ eecQaPlugin.tests = {
    * @description Tests whether any labor has been added to the service request
    */
   labor: {
-    description: 'Labor Entered',
+    description: 'Labor Hours Entered',
     update: function() {
       eecQaPlugin.callApi('LaborCost', 'RequestCostsByRequest', {RequestIds: [eecQaPlugin.recordId]}, function(data) {
         var status = '';
