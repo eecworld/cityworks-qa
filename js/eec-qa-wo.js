@@ -211,7 +211,7 @@ eecQaPlugin.tests = {
    * @description Tests whether the work order is associated to an asset
    */
   asset: {
-    description: 'Attached to Asset(s)',
+    description: 'Asset(s) Attached',
     update: function() {
       eecQaPlugin.callApi('WorkOrder', 'Entities', {WorkOrderIds: [eecQaPlugin.recordId]}, function(data) {
         var status = '';
@@ -238,7 +238,7 @@ eecQaPlugin.tests = {
    * @description Tests whether any labor has been added to the work order
    */
   labor: {
-    description: 'Labor Entered',
+    description: 'Labor Hours Entered',
     update: function() {
       eecQaPlugin.callApi('LaborCost', 'WorkOrderCostsByWorkOrder', {WorkOrderIds: [eecQaPlugin.recordId]}, function(data) {
         var status = '';
