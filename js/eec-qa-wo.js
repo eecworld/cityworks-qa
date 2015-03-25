@@ -260,16 +260,20 @@ eecQaPlugin.tests = {
    * @description Tests whether any equipment has been added to the work order
    */
   equipment: {
-    description: 'Equipment Entered',
+    description: 'Equipment Unit-Hours Entered',
     update: function() {
       eecQaPlugin.callApi('EquipmentCost', 'WorkOrderCostsByWorkOrder', {WorkOrderIds: [eecQaPlugin.recordId]}, function(data) {
         var status = '';
+        var unitHours = 0;
         if (data.length > 0) {
           status = 'pass';
+          for (var i=0; i<data.length; i++) {
+            unitHours += (data[i].UnitsRequired * data[i].HoursRequired);
+          }
         } else {
           status = 'fail';
         }
-        eecQaPlugin.setTestResults('equipment', status);
+        eecQaPlugin.setTestResults('equipment', status, unitHours);
       });
     }
   },
