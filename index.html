@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Cityworks QA Plugin by eecworld</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Cityworks QA Plugin</h1>
+        <h2>Quality Assurance Tools for Cityworks Server</h2>
+        <a href="https://github.com/eecworld/cityworks-qa" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a id="cityworks-quality-assurance-plugin" class="anchor" href="#cityworks-quality-assurance-plugin" aria-hidden="true"><span class="octicon octicon-link"></span></a>Cityworks Quality Assurance Plugin</h1>
+
+<p>Quality assurance tools for <a href="http://www.cityworks.com/">Cityworks Server</a> that validate data entry when it happens</p>
+
+<p><img src="doc/cw-qa-wo-screenshot.png" alt="Screenshot: Work Order with QA Plugin"></p>
+
+<p>Ensuring quality data entry is key to any Cityworks deployment.
+But if data isn't validated when it's entered (especially from the field), problems are often found too late to fix.
+These tools allow Cityworks administrators to add extra checks and controls to the forms in Cityworks to ensure that users are entering high quality data.</p>
+
+<p>These tools were originally developed by <a href="http://www.eecworld.com">EEC</a> for the <a href="http://portal.cityofsacramento.org/Utilities">City of Sacramento's Department of Utilities</a> Cityworks installation.
+If you have any issues, feel free to contact EEC.  The City loves you too, but they're busy running a whole city and EEC has resources dedicated to support this so you're much better off bugging EEC.</p>
+
+<h2>
+<a id="setup" class="anchor" href="#setup" aria-hidden="true"><span class="octicon octicon-link"></span></a>Setup</h2>
+
+<p>The following instructions should hopefully help you to get the QA plugin up and running.
+If you encounter any issues, feel free to contact Steve Shaffer at EEC (<a href="mailto:sshaffer@eecworld.com">sshaffer@eecworld.com</a>) for help or if you have questions.</p>
+
+<h3>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h3>
+
+<p>Copy the entire contents of this project to a web-accessible location on the host server where Cityworks is installed.</p>
+
+<p><a href="https://codeload.github.com/eecworld/cityworks-qa/zip/master">Click here</a> to download the current release in a zip archive.</p>
+
+<p>If git is installed on the destination machine, the following command can be used to deploy the project with git:</p>
+
+<pre><code>git clone https://github.com/eecworld/cityworks-qa.git
+</code></pre>
+
+<p>If you run the above command in wwwroot or deploy the tool to wwwroot\cityworks-qa, all the default parameters should run correctly.
+If not, you'll need to re-map some of the parameters in the XML.</p>
+
+<h3>
+<a id="configuration" class="anchor" href="#configuration" aria-hidden="true"><span class="octicon octicon-link"></span></a>Configuration</h3>
+
+<p>The tool can be configured two ways: inside Cityworks and outside Cityworks.
+The latter doesn't make too much sense currently, so the former (inside) is the best way to deploy.</p>
+
+<h4>
+<a id="option-1-inside-cityworks-deploy--edit-xml-files-the-normal-way" class="anchor" href="#option-1-inside-cityworks-deploy--edit-xml-files-the-normal-way" aria-hidden="true"><span class="octicon octicon-link"></span></a>Option 1: Inside Cityworks: Deploy / Edit XML Files (The "Normal" Way)</h4>
+
+<p>The tool can be injected and configured through Cityworks XML customization.  Example .xml files are included in the Xml directory in this project.
+If you don't already have any XML configuration, you can deploy this file directly into an XML folder per Cityworks instructions.
+If you have existing Cityworks XML configurations for the WOGeneral, SRGeneral, and/or CustomFields pages, you can probably just copy and paste everything between the  tags to the end of the  section in your existing WOGeneral.xml, SRGeneral.xml, and CustomFields.xml files.</p>
+
+<p>See the provided XML file for notes on where to make configuration changes.
+The main changes are made in the SCRIPTS INJECTION section.</p>
+
+<h4>
+<a id="option-2-outside-cityworks-create-a-proxy-user-not-currently-supported-or-implemented" class="anchor" href="#option-2-outside-cityworks-create-a-proxy-user-not-currently-supported-or-implemented" aria-hidden="true"><span class="octicon octicon-link"></span></a>Option 2: Outside Cityworks: Create a Proxy User (Not Currently Supported or Implemented)</h4>
+
+<p>If you are using the tool outside of a Cityworks session, you'll need to create a user in Cityworks who has view permissions (but nothing else) to all things you'll need to test.
+It should be an employee, in at least one group (probably only one group, like a system group or something), and be authorized and registered on Cityworks Server with a password.
+It doesn't need to be part of any server groups, have any inbox or XML configuration, employee relates, or anything like that.</p>
+
+<p>If you are using the tool inside a Cityworks session (i.e. the URL says "/cityworks/Default.aspx" or something similar), you don't need to specify a proxy user.
+The current user's credentials will be used to authenticate all calls made by this tool.</p>
+
+<h3>
+<a id="a-note-on-customfieldsxml" class="anchor" href="#a-note-on-customfieldsxml" aria-hidden="true"><span class="octicon octicon-link"></span></a>A Note on CustomFields.xml</h3>
+
+<p>This is a note explaining why the code stub in CustomFields.xml is necessary.
+If you simply deploy what's in CustomFields.xml file, you don't need to worry about this; this is merely a technical explanation as to why that code exists.</p>
+
+<p>Because the custom fields .xml configuration is outside the scope of either the work order or service request .xml configuration, it gets loaded after the QA plugin that's loaded in each of those pages.
+As a result, required custom fields are ignored since they don't exist at the time the QA plugin is initialized.
+To remedy this, the following code should be run in a location in the .xml after the custom fields have been loaded:</p>
+
+<pre><code>eecQaPlugin.update()
+</code></pre>
+
+<p>This will update the existing counts to account for any required custom fields that have since been loaded.
+This will happen so fast that the initial count (which didn't take custom fields into account) won't even be seen by the user.</p>
+
+<h2>
+<a id="compatibility" class="anchor" href="#compatibility" aria-hidden="true"><span class="octicon octicon-link"></span></a>Compatibility</h2>
+
+<p>This tool has been tested to work with the following versions of Cityworks Server:</p>
+
+<ul>
+<li>Cityworks Server 2013 (SP2 and SP4)</li>
+<li>Cityworks Server 2013 SP4</li>
+</ul>
+
+<h2>
+<a id="contributing" class="anchor" href="#contributing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contributing</h2>
+
+<p>There are a number of ways to get involved if you'd like to contribute to this project.  See below!</p>
+
+<h3>
+<a id="reporting-issues" class="anchor" href="#reporting-issues" aria-hidden="true"><span class="octicon octicon-link"></span></a>Reporting Issues</h3>
+
+<p>If you encounter a bug or think of a great new feature you'd like to see added, go ahead and <a href="https://github.com/eecworld/cityworks-qa/issues/new">file an issue</a> on the GitHub repository.
+Please be nice and try to be as detailed as possible ;)</p>
+
+<h3>
+<a id="testing" class="anchor" href="#testing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Testing</h3>
+
+<p>If you've deployed this tool in a particular version of Cityworks that's not listed in the "Compatibility" section above, please send along the results of your deployment so we can update our compatibility.</p>
+
+<h3>
+<a id="code" class="anchor" href="#code" aria-hidden="true"><span class="octicon octicon-link"></span></a>Code</h3>
+
+<p>Want to contribute actual lines of code to this project?
+Great!  Just fork this repository and submit a Pull Request on GitHub.</p>
+
+<p>And if that's not your standard workflow, feel free to just send your contributions along to Steve Shaffer @ EEC (<a href="mailto:sshaffer@eecworld.com">sshaffer@eecworld.com</a>).</p>
+
+<hr>
+
+<h2>
+<a id="special-thanks" class="anchor" href="#special-thanks" aria-hidden="true"><span class="octicon octicon-link"></span></a>Special Thanks</h2>
+
+<p>Special thanks to the City of Sacramento's Department of Utilities for making this tool possible, shaping the initial development, and supporting its release to the Cityworks community.</p>
+
+<p>Thanks also to all the hardworking folks at <a href="http://www.cityworks.com/">Cityworks</a> for their dedication to building an extensible platform for awesome GIS-centric public asset management!</p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/eecworld/cityworks-qa/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/eecworld/cityworks-qa/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/eecworld/cityworks-qa"></a> is maintained by <a href="https://github.com/eecworld">eecworld</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+            <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-21506909-2");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
