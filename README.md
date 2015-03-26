@@ -8,13 +8,13 @@ Ensuring quality data entry is key to any Cityworks deployment.
 But if data isn't validated when it's entered (especially from the field), problems are often found too late to fix.
 These tools allow Cityworks administrators to add extra checks and controls to the forms in Cityworks to ensure that users are entering high quality data.
 
-These tools were originally developed by [EEC](http://www.eecworld.com) for the [City of Sacramento's Department of Utilities](http://portal.cityofsacramento.org/Utilities) Cityworks installation.
+These tools were originally developed by [EEC](http://www.eecenvironmental.com) for the [City of Sacramento's Department of Utilities](http://portal.cityofsacramento.org/Utilities) Cityworks installation.
 If you have any issues, feel free to contact EEC.  The City loves you too, but they're busy running a whole city and EEC has resources dedicated to support this so you're much better off bugging EEC.
 
 ## Setup
 
 The following instructions should hopefully help you to get the QA plugin up and running.
-If you encounter any issues, feel free to contact Steve Shaffer at EEC (sshaffer@eecworld.com) for help or if you have questions.
+If you encounter any issues, feel free to contact Steve Shaffer at EEC (sshaffer@eecenvironmental.com) for help or if you have questions.
 
 ### Installation
 
@@ -71,7 +71,7 @@ This will happen so fast that the initial count (which didn't take custom fields
 This tool has been tested to work with the following versions of Cityworks Server:
 
  * Cityworks Server 2013 (SP2 and SP4)
- * Cityworks Server 2013 SP4
+ * Cityworks Server 2014
 
 ## Contributing
 
@@ -91,7 +91,7 @@ If you've deployed this tool in a particular version of Cityworks that's not lis
 Want to contribute actual lines of code to this project?
 Great!  Just fork this repository and submit a Pull Request on GitHub.
 
-And if that's not your standard workflow, feel free to just send your contributions along to Steve Shaffer @ EEC (sshaffer@eecworld.com).
+And if that's not your standard workflow, feel free to just send your contributions along to Steve Shaffer @ EEC (sshaffer@eecenvironmental.com).
 
 ----------
 
