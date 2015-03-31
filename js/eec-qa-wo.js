@@ -251,6 +251,7 @@ eecQaPlugin.tests = {
         } else {
           status = 'fail';
         }
+        hours = Math.round(hours * 10) / 10;
         eecQaPlugin.setTestResults('labor', status, hours);
       });
     }
@@ -273,6 +274,7 @@ eecQaPlugin.tests = {
         } else {
           status = 'fail';
         }
+        unitHours = Math.round(unitHours * 10) / 10;
         eecQaPlugin.setTestResults('equipment', status, unitHours);
       });
     }
@@ -297,6 +299,7 @@ eecQaPlugin.tests = {
         } else {
           status = 'fail';
         }
+        units = Math.round(units * 10) / 10;
         eecQaPlugin.setTestResults('materials', status, units);
       });
     }
