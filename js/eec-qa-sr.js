@@ -197,6 +197,7 @@ eecQaPlugin.tests = {
         } else {
           status = 'fail';
         }
+        hours = Math.round(hours * 10) / 10;
         eecQaPlugin.setTestResults('labor', status, hours);
       });
     }
