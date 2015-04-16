@@ -1,0 +1,1 @@
+For some reason, init.js won't load unless we put it in dependencies.  It looks like modules, styles, and scripts are getting skipped for some reason.

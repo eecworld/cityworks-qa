@@ -8,4 +8,4 @@ var qaParams = {
   applyToAllMessage: 'Disabled when "Apply to All" is checked.  Please check your data entry carefully.',
   statuses: ['COMPLETE']  //TODO: Pull these out as options
 };
-eecQaPlugin.init(qaParams);
+setTimeout(function() {eecQaPlugin.init(qaParams); }, 0);
