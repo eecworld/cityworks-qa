@@ -12,7 +12,9 @@
     {
       "scripts": ["js/eec-qa.js"],
       "styles": ["css/eec-qa.css"]
-    },
+    }
+  ],
+  "modules": [
     {
       "scripts": ["js/eec-qa-wo.js"],
       "pages": ["wogeneraledit"]
@@ -20,18 +22,11 @@
     {
       "scripts": ["js/eec-qa-sr.js"],
       "pages": ["requestedit"]
-    },
-    {
-      "scripts": ["js/init.js"]
     }
   ],
   "pages": [
     "requestedit",
     "wogeneraledit"
   ],
-  "modules": [
-    {"scripts": ["js/init.js"]}
-  ],
-  "styles": ["badstyle"],
   "scripts": ["js/init.js"]
 }
