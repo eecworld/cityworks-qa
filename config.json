@@ -2,12 +2,23 @@
   "id": "cityworks-qa",
   "name": "Cityworks QA Plugin",
   "author" : "sshaffer@eecenvironmental.com",
-  "version": "1.1",
+  "version": "1.2",
   "options": {
-    "applyToAllMessage": "Disabled when \"Apply to All\" is checked.  Please check your data entry carefully.",
-    "statuses": ["COMPLETE"],
-    "tests": "all"
+    "workorder": {
+      "applyToAllMessage": "Disabled when \"Apply to All\" is checked.  Please check your data entry carefully.",
+      "statuses": ["COMPLETE"],
+      "tests": "all"
+    },
+    "request": {
+      "applyToAllMessage": "Disabled when \"Apply to All\" is checked.  Please check your data entry carefully.",
+      "statuses": ["COMPLETE"],
+      "tests": "all"
+    }
   },
+  "pages": [
+    "requestedit",
+    "wogeneraledit"
+  ],
   "dependencies": [
     {
       "scripts": ["js/eec-qa.js"],
@@ -16,17 +27,19 @@
   ],
   "modules": [
     {
-      "scripts": ["js/eec-qa-wo.js"],
+      "scripts": [
+        "js/eec-qa-wo.js",
+        "js/eec-qa-plugin-wo.js"
+      ],
       "pages": ["wogeneraledit"]
     },
     {
-      "scripts": ["js/eec-qa-sr.js"],
+      "scripts": [
+        "js/eec-qa-sr.js",
+        "js/eec-qa-plugin-sr.js"
+      ],
       "pages": ["requestedit"]
     }
-  ],
-  "pages": [
-    "requestedit",
-    "wogeneraledit"
   ],
   "scripts": ["js/init.js"]
 }

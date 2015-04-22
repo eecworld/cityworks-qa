@@ -2,10 +2,12 @@ $('.column:first').prepend($('<div class="container" style="width:482px;"><div c
 
 var applicationName = window.location.pathname.split('/');
 applicationName = applicationName.splice(0, applicationName.length-2).join('/');
+
 var qaParams = {
   application: applicationName,
   selector: "#eec-qa-tests",
-  applyToAllMessage: 'Disabled when "Apply to All" is checked.  Please check your data entry carefully.',
-  statuses: ['COMPLETE']  //TODO: Pull these out as options
+  applyToAllMessage: eecQaPlugin.options.applyToAllMessage,
+  statuses: eecQaPlugin.options.statuses,
+  tests: eecQaPlugin.options.tests
 };
 setTimeout(function() {eecQaPlugin.init(qaParams); }, 0);

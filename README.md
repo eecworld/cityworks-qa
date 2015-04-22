@@ -48,7 +48,27 @@ The main changes are made in the SCRIPTS INJECTION section.
 #### Option 2: EEC Cityworks Plugin Architecture
 
 This repository is a valid EEC Cityworks Plugin.
-If you are using the EEC Cityworks Plugin loader, you'll need to copy the tool to the "modules" directory and add "cityworks-qa" (or whatever the folder name is where you deploy it) to the list of modules in your configuration.
+If you are using the EEC Cityworks Plugin loader, you'll need to copy the tool to the "modules" directory and add "cityworks-qa" to the list of modules in your configuration.
+
+The options that are available for this plugin are as follows:
+
+* applyToAllMessage: A message to be shown when "Apply to All" is checked (since the QA plugin doesn't run when the form is in "Apply to All" mode)
+* statuses: A list of statuses to refuse when all tests have not been met
+* tests: A list of the tests that should be run
+
+These can be set on both the "workorder" and "request" options nodes as in the following example:
+
+    # This example is shown in YAML, but the corresponding JSON would also work
+    modules:
+    - id: cityworks-qa
+      options:
+        workorder:
+          tests:
+          - labor
+          - tasks
+        request:
+          tests:
+          - labor
 
 ### A Note on CustomFields.xml
 
@@ -70,6 +90,7 @@ This tool has been tested to work with the following versions of Cityworks Serve
 
  * Cityworks Server 2013 (SP2 and SP4)
  * Cityworks Server 2013 SP4
+ * Cityworks Server 2014
 
 ## Contributing
 
