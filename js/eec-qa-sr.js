@@ -184,16 +184,21 @@ eecQaPlugin.tests = {
    * @description Tests whether any labor has been added to the service request
    */
   labor: {
-    description: 'Labor Entered',
+    description: 'Labor Hours Entered',
     update: function() {
       eecQaPlugin.callApi('LaborCost', 'RequestCostsByRequest', {RequestIds: [eecQaPlugin.recordId]}, function(data) {
         var status = '';
+        var hours = 0;
         if (data.length > 0) {
           status = 'pass';
+          for (var i=0; i<data.length; i++) {
+            hours += data[i].Hours;
+          }
         } else {
           status = 'fail';
         }
-        eecQaPlugin.setTestResults('labor', status);
+        hours = Math.round(hours * 10) / 10;
+        eecQaPlugin.setTestResults('labor', status, hours);
       });
     }
   }

@@ -309,8 +309,7 @@ eecQaPlugin.init = function(params) {
     }).change(function() {
       if (eecQaPlugin.statuses.indexOf(this.value) > -1) {
         var logStatusChange = function(status, fails) {  //TODO: Add error handling
-          var d = new Date();
-          var comment = 'Marked ' + status + ' by ' + eecQaPlugin.getUserName() + ' on ' + d.toString();
+          var comment = 'Marked ' + status;
           if (fails != null) {
             var failText = '';
             for (var i=0; i<fails.length; i++) {
