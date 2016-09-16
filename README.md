@@ -1,6 +1,6 @@
 # Cityworks Quality Assurance Plugin
 
-Version 1.1
+Version 1.3.0
 
 Quality assurance tools for [Cityworks Server](http://www.cityworks.com/) that validate data entry when it happens
 

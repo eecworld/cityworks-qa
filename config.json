@@ -2,7 +2,7 @@
   "id": "cityworks-qa",
   "name": "Cityworks QA Plugin",
   "author" : "sshaffer@eecenvironmental.com",
-  "version": "1.2",
+  "version": "1.3.0",
   "options": {
     "workorder": {
       "applyToAllMessage": "Disabled when \"Apply to All\" is checked.  Please check your data entry carefully.",
