@@ -13,11 +13,17 @@
       "applyToAllMessage": "Disabled when \"Apply to All\" is checked.  Please check your data entry carefully.",
       "statuses": ["COMPLETE"],
       "tests": "all"
+    },
+    "inspection": {
+      "applyToAllMessage": "Disabled when \"Apply to All\" is checked.  Please check your data entry carefully.",
+      "statuses": ["COMPLETE"],
+      "tests": "all"
     }
   },
   "pages": [
     "requestedit",
-    "wogeneraledit"
+    "wogeneraledit",
+    "inspectionedit"
   ],
   "dependencies": [
     {
@@ -39,6 +45,13 @@
         "js/eec-qa-plugin-sr.js"
       ],
       "pages": ["requestedit"]
+    },
+    {
+      "scripts": [
+        "js/eec-qa-in.js",
+        "js/eec-qa-plugin-in.js"
+      ],
+      "pages": ["inspectionedit"]
     }
   ],
   "scripts": ["js/init.js"]
