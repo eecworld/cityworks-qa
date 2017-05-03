@@ -186,7 +186,7 @@ eecQaPlugin.tests = {
   requiredFields: {
     description: 'Required Fields Filled In',
     update: function() {
-      var fieldEls = $('[class*=Required]').next().find('input[type=text], select')
+      var fieldEls = $('[class*=Required]').next().find('input, select');
       var status = '';
       var complete = 0;
       var total = fieldEls.length;
