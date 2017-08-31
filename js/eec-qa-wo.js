@@ -4,6 +4,15 @@
  * Work order-specific functionality for the QA plugin
  */
 
+eecQaPlugin.findRequiredFields = function() {
+  return $('[class*=Required]').next().find('input, select');
+};
+
+eecQaPlugin.requiredFieldIsEmpty = function(el) {
+  var content = $(el).val();
+  return !content || content === 'MM/DD/YYYY';
+};
+
 /**
  * @function getControl
  * @description
@@ -85,6 +94,10 @@ eecQaPlugin.addComments = function(comments, callback) {
   eecQaPlugin.callApi('WorkOrder', 'AddComments', {'WorkOrderId': eecQaPlugin.recordId, 'Comments': comments}, callback);
 };
 
+eecQaPlugin.jumpToElm = function() {
+  $('[id*="thisToolbar_elm"]').click();
+};
+
 /**
  * @var {Object} tests
  * @description
@@ -121,6 +134,9 @@ eecQaPlugin.tests = {
    */
   tasks: {
     description: 'Tasks Complete',
+    jump: function() {
+      $('[id*="thisToolbar_tasks"]').click();
+    },
     update: function() {
       eecQaPlugin.callApi('Tasks', 'ByWorkOrder', {WorkOrderIds: [eecQaPlugin.recordId]}, function(data) {
         var status = '';
@@ -150,6 +166,9 @@ eecQaPlugin.tests = {
    */
   inspections: {
     description: 'Inspections Complete',
+    jump: function() {
+      eecQaPlugin.getControl('txtInspectionId').focus();
+    },
     update: function() {
       var inspIdEls = eecQaPlugin.getControl('grdInspections').find('.rgRow td a, .rgAltRow td a');
       var inspIds = [];
@@ -185,14 +204,22 @@ eecQaPlugin.tests = {
    */
   requiredFields: {
     description: 'Required Fields Filled In',
+    jump: function() {
+      var foundOne = false;
+      eecQaPlugin.findRequiredFields().each(function() {
+        if (!foundOne && eecQaPlugin.requiredFieldIsEmpty(this)) {
+          foundOne = true;
+          this.focus();
+        }
+      })
+    },
     update: function() {
-      var fieldEls = $('[class*=Required]').next().find('input, select');
+      var fieldEls = eecQaPlugin.findRequiredFields();
       var status = '';
       var complete = 0;
       var total = fieldEls.length;
       fieldEls.each(function() {
-        var content = $(this).val();
-        if (content != '' && content != 'MM/DD/YYYY') { complete++; }
+        if (!eecQaPlugin.requiredFieldIsEmpty(this)) { complete++; }
       });
       if (complete == total) {
         if (total > 0) {
@@ -212,6 +239,14 @@ eecQaPlugin.tests = {
    */
   asset: {
     description: 'Asset(s) Attached',
+    jump: function() {
+      var button = eecQaPlugin.getControl('btnGetFromMap');
+      button.focus();
+      button.css('border-color', 'solid red');
+      setTimeout(function() {
+        button.css('border', 'rgb(187, 187, 187)');
+      }, 3000);
+    },
     update: function() {
       eecQaPlugin.callApi('WorkOrder', 'Entities', {WorkOrderIds: [eecQaPlugin.recordId]}, function(data) {
         var status = '';
@@ -239,6 +274,7 @@ eecQaPlugin.tests = {
    */
   labor: {
     description: 'Labor Hours Entered',
+    jump: eecQaPlugin.jumpToElm,
     update: function() {
       eecQaPlugin.callApi('LaborCost', 'WorkOrderCostsByWorkOrder', {WorkOrderIds: [eecQaPlugin.recordId]}, function(data) {
         var status = '';
@@ -262,6 +298,7 @@ eecQaPlugin.tests = {
    */
   equipment: {
     description: 'Equipment Unit-Hours Entered',
+    jump: eecQaPlugin.jumpToElm,
     update: function() {
       eecQaPlugin.callApi('EquipmentCost', 'WorkOrderCostsByWorkOrder', {WorkOrderIds: [eecQaPlugin.recordId]}, function(data) {
         var status = '';
@@ -287,6 +324,7 @@ eecQaPlugin.tests = {
    */
   materials: {
     description: 'Material Units Entered',
+    jump: eecQaPlugin.jumpToElm,
     update: function() {
       eecQaPlugin.callApi('MaterialCost', 'WorkOrderCostsByWorkOrder', {WorkOrderIds: [eecQaPlugin.recordId]}, function(data) {
         var status = '';

@@ -271,19 +271,43 @@ eecQaPlugin.init = function(params) {
     }
 
     if (!eecQaPlugin.applyToAll) {
-      for (var testName in eecQaPlugin.tests) {
+      for (testName in eecQaPlugin.tests) {
         if (eecQaPlugin.tests.hasOwnProperty(testName)) {
-          var test = eecQaPlugin.tests[testName];
-          $(eecQaPlugin.selector)
-            .append($('<div id="eec-qa-test-' + testName + '" class="row"></div>')
-              .append($('<label class="field label eec-qa-status"></label>')
-                .text(eecQaPlugin.getStatusLabel(test))
-              )
-              .append($('<div class="field eec-qa-description"></div>')
-                .text(test.description)
-              )
-            )
-          ;
+          renderTest(eecQaPlugin.tests[testName]);
+
+          function renderTest(test) {
+            var row = $('<div id="eec-qa-test-' + testName + '" class="row"></div>');
+            renderLabel(row);
+            renderDescription(row);
+
+            $(eecQaPlugin.selector).append(row);
+
+            function renderLabel(row) {
+              row
+                .append($('<label class="field label eec-qa-status"></label>')
+                  .text(eecQaPlugin.getStatusLabel(test))
+                )
+              ;
+            }
+
+            function renderDescription(row) {
+              var content;
+              if (test.jump) {
+                content = $('<a></a>')
+                  .click(function () {
+                    test.jump();
+                  })
+                  .text(test.description);
+              } else {
+                content = $('<span>' + test.description + '</span>');
+              }
+              row
+                .append($('<div class="field eec-qa-description"></div>')
+                  .append(content)
+                )
+              ;
+            }
+          }
         }
       }
       eecQaPlugin.update();
