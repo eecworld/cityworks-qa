@@ -4,6 +4,15 @@
  * Inspection-specific functionality for the QA plugin
  */
 
+eecQaPlugin.findRequiredFields = function() {
+  return $('[class*=Required]').next().find('input, select');
+};
+
+eecQaPlugin.requiredFieldIsEmpty = function(el) {
+  var content = $(el).val();
+  return !content || content === 'MM/DD/YYYY';
+};
+
 /**
  * @function getControl
  * @description
@@ -106,14 +115,23 @@ eecQaPlugin.tests = {
    */
   requiredFields: {
     description: 'Required Fields Filled In',
+    jump: function() {
+      var foundOne = false;
+      eecQaPlugin.findRequiredFields().each(function() {
+        if (!foundOne && eecQaPlugin.requiredFieldIsEmpty(this)) {
+          foundOne = true;
+          this.focus();
+        }
+      })
+    },
     update: function() {
-      var fieldEls = $('[class*=Required]').next().find('input[type=text], select')
+      var fieldEls = eecQaPlugin.findRequiredFields();
       var status = '';
       var complete = 0;
       var total = fieldEls.length;
       fieldEls.each(function() {
         var content = $(this).val();
-        if (content != '' && content != 'MM/DD/YYYY') { complete++; }
+        if (!eecQaPlugin.requiredFieldIsEmpty(this)) { complete++; }
       });
       if (complete == total) {
         if (total > 0) {
@@ -133,6 +151,14 @@ eecQaPlugin.tests = {
    */
   asset: {
     description: 'Asset Attached',
+    jump: function() {
+      var button = eecQaPlugin.getControl('btnGetFromMap');
+      button.focus();
+      button.css('border-color', 'solid red');
+      setTimeout(function() {
+        button.css('border', 'rgb(187, 187, 187)');
+      }, 3000);
+    },
     update: function() {  // TODO: Look locally instead of from API?
       eecQaPlugin.callApi('Inspection', 'ById', {InspectionId: eecQaPlugin.recordId}, function(data) {
         var status = '';
