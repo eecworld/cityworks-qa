@@ -4,6 +4,15 @@
  * Service request-specific functionality for the QA plugin
  */
 
+eecQaPlugin.findRequiredFields = function() {
+  return $('[class*=Required]').next().find('input, select');
+};
+
+eecQaPlugin.requiredFieldIsEmpty = function(el) {
+  var content = $(el).val();
+  return !content || content === 'MM/DD/YYYY';
+};
+
 /**
  * @function getControl
  * @description
@@ -122,6 +131,9 @@ eecQaPlugin.tests = {
    */
   inspections: {
     description: 'Inspections Complete',
+    jump: function() {
+      eecQaPlugin.getControl('txtInspectionId').focus();
+    },
     update: function() {
       var inspIdEls = eecQaPlugin.getControl('grdInspections').find('.rgRow td a, .rgAltRow td a');
       var inspIds = [];
@@ -157,15 +169,23 @@ eecQaPlugin.tests = {
    */
   requiredFields: {
     description: 'Required Fields Filled In',
+    jump: function() {
+      var foundOne = false;
+      eecQaPlugin.findRequiredFields().each(function() {
+        if (!foundOne && eecQaPlugin.requiredFieldIsEmpty(this)) {
+          foundOne = true;
+          this.focus();
+        }
+      })
+    },
     update: function() {
       //TODO: Doesn't recognize required fields on other pages (i.e. arrived on site)
-      var fieldEls = $('[class*=Required]').next().find('input, select');
+      var fieldEls = eecQaPlugin.findRequiredFields();
       var status = '';
       var complete = 0;
       var total = fieldEls.length;
       fieldEls.each(function() {
-        var content = $(this).val();
-        if (content != '' && content != 'MM/DD/YYYY') { complete++; }
+        if (!eecQaPlugin.requiredFieldIsEmpty(this)) { complete++; }
       });
       if (complete == total) {
         if (total > 0) {
@@ -185,6 +205,9 @@ eecQaPlugin.tests = {
    */
   labor: {
     description: 'Labor Hours Entered',
+    jump: function() {
+      $('[id*="thisToolbar_labor"]').click();
+    },
     update: function() {
       eecQaPlugin.callApi('LaborCost', 'RequestCostsByRequest', {RequestIds: [eecQaPlugin.recordId]}, function(data) {
         var status = '';
