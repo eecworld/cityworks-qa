@@ -10,4 +10,12 @@ var qaParams = {
   statuses: eecQaPlugin.options.statuses,
   tests: eecQaPlugin.options.tests
 };
-setTimeout(function() {eecQaPlugin.init(qaParams); }, 0);
+
+setTimeout(function() {
+    eecQaPlugin.init(qaParams);
+}, 0);
+
+// Safety run in case there's a race condition with custom required fields being loaded late.
+setTimeout(function() {
+    eecQaPlugin.update();
+}, 5000);
