@@ -17,5 +17,5 @@ setTimeout(function() {
 
 // Safety run in case there's a race condition with custom required fields being loaded late.
 setInterval(function() {
-    eecQaPlugin.update();
+    eecQaPlugin.update('requiredFields');
 }, 5000);
