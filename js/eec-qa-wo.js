@@ -149,7 +149,7 @@ eecQaPlugin.tests = {
    * Tests whether all related inspections have been closed.  If there are no related inspections, is set to "NA"
    */
   inspections: {
-    description: 'Inspections Complete',
+    description: 'Inspections Closed',
     update: function() {
       var inspIdEls = eecQaPlugin.getControl('grdInspections').find('.rgRow td a, .rgAltRow td a');
       var inspIds = [];
@@ -186,13 +186,32 @@ eecQaPlugin.tests = {
   requiredFields: {
     description: 'Required Fields Filled In',
     update: function() {
-      var fieldEls = $('[class*=Required]').next().find('input[type=text], select')
+      //var fieldEls = $('[class*=Required]').next().find('input[type=text], select, cw-date-time-picker')
+	  //Modified for Cityworks 2015
+	  //2017-01-06
+	  var fieldEls = $('[class*=Required]').next().find('input[type=text], select, cw-date-time-picker')
       var status = '';
-      var complete = 0;
+      var complete = 0; 
       var total = fieldEls.length;
       fieldEls.each(function() {
+		
         var content = $(this).val();
-        if (content != '' && content != 'MM/DD/YYYY') { complete++; }
+        //if (content != '' && content != null) { complete++; }
+		//Modified for Cityworks 2015
+	    //2017-01-06 
+		//JBH : Modified to check the value attribute as it is set and Val is not set for the actual finish date
+		if (content == '' || content == null) 
+		{
+			content = $(this).attr('value'); 
+		}
+		
+		//turns out completed by is 0 or -9999 sometimes too when empty :)
+		if ($(this).attr('name') == "ctl00$Main$cboWorkCompletedBy" && (content == 0 || content == "-9999"))
+		{
+			content = null;
+		} 
+		
+		if (content != '' && content != null) { complete++; }
       });
       if (complete == total) {
         if (total > 0) {

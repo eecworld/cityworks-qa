@@ -159,7 +159,10 @@ eecQaPlugin.tests = {
     description: 'Required Fields Filled In',
     update: function() {
       //TODO: Doesn't recognize required fields on other pages (i.e. arrived on site)
-      var fieldEls = $('[class*=Required]').next().find('input[type=text], select')
+      //var fieldEls = $('[class*=Required]').next().find('input, select')
+	  //Adjustment for Cityworks 2015
+	  // 2016-02-10
+	  var fieldEls = $('[class*=Required]').next().find('input, select')
       var status = '';
       var complete = 0;
       var total = fieldEls.length;
