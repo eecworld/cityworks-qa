@@ -90,6 +90,7 @@ This tool has been tested to work with the following versions of Cityworks Serve
 
  * Cityworks Server 2013 (SP2 and SP4)
  * Cityworks Server 2014
+ * Cityworks Server 15.2.5 - 15.2.1
 
 ## Contributing
 

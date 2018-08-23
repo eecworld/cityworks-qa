@@ -40,14 +40,12 @@
       <row type="plain">
         <label id="eec-qa-code" type="plain">
           <text><![CDATA[
-            <!-- CHANGE THE PATHS AFTER href AND src TO THE LOCATION OF THE CSS FILE FOR THIS TOOL -->
-            <link rel="stylesheet" type="text/css" href="/cityworks-qa/css/eec-qa.css" />
-            <script src="/cityworks-qa/js/eec-qa.js"></script>
-            <script src="/cityworks-qa/js/eec-qa-wo.js"></script>
-
-            <!-- CHANGE THE TOOL'S PARAMETERS BELOW AS INDICATED IN THE COMMENTS -->
             <script type="text/javascript">
               var applicationName = window.location.pathname.split('/');
+              var sitebase = applicationName[1];
+                $('head').append('<link rel="stylesheet" href="/' + sitebase + '/assets/css/eec-qa.css" type="text/css" />');
+                $('head').append('<script src="/' + sitebase + '/assets/js/eec-qa.js">');
+                $('head').append('<script src="/' + sitebase + '/assets/js/eec-qa-wo.js">');
               applicationName = applicationName.splice(0, applicationName.length-2).join('/');
               var qaParams = {
                 application: applicationName,  // Replace this with the path to your Cityworks instance (with no trailing "/" or "Default.aspx")
@@ -62,7 +60,6 @@
         </label>
       </row>
     </panel>
-
   </layout>
   <messages></messages>
 </webLayout>
