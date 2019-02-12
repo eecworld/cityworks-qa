@@ -16,7 +16,7 @@ If you have any issues, feel free to contact EEC.  The City loves you too, but t
 ## Setup
 
 The following instructions should hopefully help you to get the QA plugin up and running.
-If you encounter any issues, feel free to contact Steve Shaffer at EEC (sshaffer@eecenvironmental.com) for help or if you have questions.
+If you encounter any issues, feel free to contact Matthew Shubin (mshubin@eecenvironmental.com) or Aaron Kochman (akochman@eecenvironmental.com) at EEC for help or if you have questions.
 
 ### Installation
 
