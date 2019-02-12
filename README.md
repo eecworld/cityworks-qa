@@ -110,7 +110,7 @@ If you've deployed this tool in a particular version of Cityworks that's not lis
 Want to contribute actual lines of code to this project?
 Great!  Just fork this repository and submit a Pull Request on GitHub.
 
-And if that's not your standard workflow, feel free to just send your contributions along to Evan Lue @ EEC (elue@eecenvironmental.com).
+And if that's not your standard workflow, feel free to just send your contributions along to Matthew Shubin (mshubin@eecenvironmental.com) or Aaron Kochman (akochman@eecenvironmental.com) at EEC.
 
 ----------
 
